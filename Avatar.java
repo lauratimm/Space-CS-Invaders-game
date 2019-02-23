@@ -2,19 +2,39 @@ public class Avatar extends Space_Board {
 
   private char ship = 'S';
 
-  // I'm not sure how we're gonna go about getting the location of the things
-  // on the screen, this is just the list indices as "x and y" coordinates.
-  // Open to suggestions!!!
+  // Initial coordinates of the ship, as list indices.
   private int row = 9;
   private int column = 5;
 
-  // Based on user input (w,a,s or d) move one "space" in a specific direction
-  // Will also need to remove the ship from the previous space.
-  public void moveShip(input) {
+  // Getter methods are needed to provide bullet with the location of the ship.
+  public int getRow(){
+    return this.row;
   }
 
-  // The bullet will need to know where the ship is so it can shoot from
-  // the right place.
-  public int getLocation() {
+  public int getColumn(){
+    return this.column;
   }
+
+  // Based on user input move in a specific direction
+  // Will also remove ship from previous space and place it in new space.
+  public void moveShip(char input) {
+    //first, get rid of old ship by calling the inherited method
+    this.removeObject(row, column);
+    // determine what direction to move
+    if (input = 'w') {
+      row += 1;
+    }
+    else if (input = 's') {
+      row -= 1;
+    }
+    else if (input = 'd') {
+      column += 1;
+    }
+    else if (input = 'a') {
+      column -= 1;
+    }
+    //place new ship with new coord also using method from Space_Board.
+    this.placeObject(ship, row, column);
+  }
+
 }
