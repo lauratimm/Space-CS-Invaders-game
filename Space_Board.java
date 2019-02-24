@@ -12,6 +12,11 @@ public class Space_Board {
 					 			 	 {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '}}; //R10
 				   		  	//C 1   2   3   4   5   6   7   8   9   10  11
 
+	public char copyBoard(char board){
+		char newBoard = board;
+		return newBoard;
+	}
+
 	public void placeObject(char object, int row, int column) {
 		grid[row][column] = object;
 	}
@@ -34,8 +39,22 @@ public void print(){
 
 public static void main(String [] args){
 	Space_Board grix = new Space_Board();
+  int row = 9;
+	int column = 5;
+	grix.placeObject('S', row,column);
 
-	grix.placeObject('z', 3,3);
 	grix.print();
+	Scanner reader = new Scanner(System.in);
+	char c = reader.next().charAt(0);
+	Avatar one = new Avatar();
+	if (c=='w' || c=='s'){
+	row = one.moveShipUD(c,row,column);
+}
+else if (c=='d'||c=='a') {
+	column = one.moveShipLR(c,row,column);
+
+}
+	grix.placeObject('S', row,column);
+	System.out.println(row);
 }
 }
