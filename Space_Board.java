@@ -50,6 +50,8 @@ public static void main(String [] args){
 	Scanner reader = new Scanner(System.in);
 	char c = reader.next().charAt(0);
 	Avatar one = new Avatar();
+	grix.removeObject(9,5);
+
 	if (c=='w' || c=='s'){
 	row = one.moveShipUD(c,row,column);
 }
