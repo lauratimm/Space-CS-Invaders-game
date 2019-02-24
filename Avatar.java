@@ -1,4 +1,5 @@
-public class Avatar extends Space_Board {
+import java.util.*;
+public class Avatar{
 
   private char ship = 'S';
 
@@ -17,24 +18,34 @@ public class Avatar extends Space_Board {
 
   // Based on user input move in a specific direction
   // Will also remove ship from previous space and place it in new space.
-  public void moveShip(char input) {
+  public int moveShipUD(char input, int row, int column) {
     //first, get rid of old ship by calling the inherited method
-    this.removeObject(row, column);
     // determine what direction to move
     if (input == 'w') {
-      row += 1;
+      row -= 5;
     }
     else if (input == 's') {
-      row -= 1;
+      row += 1;
     }
-    else if (input == 'd') {
+    return row;
+    //place new ship with new coord also using method from Space_Board.
+    //this.placeObject(ship, row, column);
+  }
+  public int moveShipLR(char input, int row, int column) {
+    //first, get rid of old ship by calling the inherited method
+    // determine what direction to move
+    if (input == 'd') {
       column += 1;
     }
     else if (input == 'a') {
       column -= 1;
     }
+    return column;
     //place new ship with new coord also using method from Space_Board.
-    this.placeObject(ship, row, column);
+    //this.placeObject(ship, row, column);
   }
+
+
+
 
 }
