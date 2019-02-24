@@ -21,16 +21,16 @@ public class Avatar extends Space_Board {
     //first, get rid of old ship by calling the inherited method
     this.removeObject(row, column);
     // determine what direction to move
-    if (input = 'w') {
+    if (input == 'w') {
       row += 1;
     }
-    else if (input = 's') {
+    else if (input == 's') {
       row -= 1;
     }
-    else if (input = 'd') {
+    else if (input == 'd') {
       column += 1;
     }
-    else if (input = 'a') {
+    else if (input == 'a') {
       column -= 1;
     }
     //place new ship with new coord also using method from Space_Board.
