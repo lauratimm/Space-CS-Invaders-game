@@ -8,7 +8,7 @@ public class Enemies extends Space_Board {
   int COLUMN =10;
 
 //use randam to generate row and column where the enemies will be placed on the board
-public void generateEnemies(){
+public Space_Board generateEnemies(){
   Random rand = new Random();
   int enemies = 0;
   Space_Board grid = new Space_Board();
@@ -23,7 +23,7 @@ while (enemies<MAXENEMIES){
     enemies++;
  }
 }
-  grid.print();
+  return grid;
 }
 public int getPosition() {
   for (int column = 0; column <= COLUMN; column++){
