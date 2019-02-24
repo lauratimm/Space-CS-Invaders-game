@@ -11,10 +11,12 @@ public class Space_Board {
 					 			 	 {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},  //R9
 					 			 	 {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '}}; //R10
 				   		  	//C 1   2   3   4   5   6   7   8   9   10  11
+public Space_Board(){
 
-	public char copyBoard(char board){
-		char newBoard = board;
-		return newBoard;
+}
+	public Space_Board(Space_Board board){
+		Space_Board newBoard = new Space_Board();
+		this.grid = board.grid;
 	}
 
 	public void placeObject(char object, int row, int column) {
@@ -38,7 +40,8 @@ public void print(){
 	}
 
 public static void main(String [] args){
-	Space_Board grix = new Space_Board();
+	Enemies any = new Enemies();
+	Space_Board grix = new Space_Board(any.generateEnemies());
   int row = 9;
 	int column = 5;
 	grix.placeObject('S', row,column);
@@ -55,6 +58,6 @@ else if (c=='d'||c=='a') {
 
 }
 	grix.placeObject('S', row,column);
-	System.out.println(row);
+	grix.print();
 }
 }
