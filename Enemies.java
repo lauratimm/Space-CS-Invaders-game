@@ -3,7 +3,7 @@ import java.util.Random;
 public class Enemies extends Space_Board {
   char alien = 'Z';
   boolean changeDirection = false;
-  int MAXENEMIES = 15;
+  int MAXENEMIES = 4;
   int ROW = 9;
   int COLUMN =10;
 
@@ -60,4 +60,3 @@ public static void main(String [] args){
 }
 
 }
-
