@@ -39,6 +39,7 @@ public void print(){
 		}
 	}
 
+
 public static void main(String [] args){
 	Enemies any = new Enemies();
 	Space_Board grix = new Space_Board(any.generateEnemies());
@@ -50,16 +51,45 @@ public static void main(String [] args){
 	Scanner reader = new Scanner(System.in);
 	char c = reader.next().charAt(0);
 	Avatar one = new Avatar();
-	grix.removeObject(row , column);
+	int maxEnemies = 15;
+	while (maxEnemies > 0){
 
 	if (c=='w' || c=='s'){
+			grix.removeObject(row , column);
 	row = one.moveShipUD(c,row,column);
-}
-else if (c=='d'||c=='a') {
-	column = one.moveShipLR(c,row,column);
-
-}
 	grix.placeObject('S', row,column);
 	grix.print();
+
+}
+else if (c=='d'||c=='a') {
+		grix.removeObject(row , column);
+	column = one.moveShipLR(c,row,column);
+	grix.placeObject('S', row,column);
+	grix.print();
+}
+else if (c== 'l'){
+	boolean empty = false;
+	while (empty == false){
+	if (grix.getObject(row-1, column) == ' '){
+		grix.placeObject('|', row-1, column);
+		if (grix.getObject(row, column)=='|'){
+			grix.removeObject(row, column);
+		}
+		row-=1;
+	}
+	else{
+		grix.removeObject(row-1, column);
+		grix.removeObject(row,column);
+
+		empty = true;
+		maxEnemies -= 1;
+	}
+
+}
+	grix.print();
+
+}
+c = reader.next().charAt(0);
+}
 }
 }
