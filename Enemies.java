@@ -3,25 +3,27 @@ import java.util.Random;
 public class Enemies extends Space_Board {
   char alien = 'Z';
   boolean changeDirection = false;
-  int MAXENEMIES = 9;
-  int ROW = 10;
-  int COLUMN =11;
+  int MAXENEMIES = 15;
+  int ROW = 9;
+  int COLUMN =10;
 
 //use randam to generate row and column where the enemies will be placed on the board
-public void generateEnemies(char alien, int row, int column){
+public void generateEnemies(){
   Random rand = new Random();
   int enemies = 0;
+  Space_Board grid = new Space_Board();
 
-  while (enemies<MAXENEMIES){
+while (enemies<MAXENEMIES){
     // Obtain a number between 0 to x then use for row and column.
     //check if [row][column] already in list
-    row = rand.nextInt(10);
-    column = rand.nextInt(11);
-    if (grid[row][column] == ' '){
-      grid[row][column] = alien;
-      enemies++;
-    }
-  }
+    int row = rand.nextInt(6);
+    int column = rand.nextInt(10);
+    if (grid.getObject(row,column)== ' '){
+      grid.placeObject(alien, row, column);
+    enemies++;
+ }
+}
+  grid.print();
 }
 public int getPosition() {
   for (int column = 0; column <= COLUMN; column++){
@@ -51,6 +53,11 @@ public void moveEnemies() {
     //move opposite way
   }
 }
-
+public static void main(String [] args){
+  Enemies one = new Enemies();
+  one.generateEnemies();
 
 }
+
+}
+
