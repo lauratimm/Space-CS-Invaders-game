@@ -22,7 +22,7 @@ public class Avatar{
     //first, get rid of old ship by calling the inherited method
     // determine what direction to move
     if (input == 'w') {
-      row -= 5;
+      row -= 1;
     }
     else if (input == 's') {
       row += 1;
