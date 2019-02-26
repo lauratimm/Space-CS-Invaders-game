@@ -55,24 +55,45 @@ public static void main(String [] args){
 	while (maxEnemies > 0){
 		char c = reader.next().charAt(0);
 	if (c=='w' || c=='s'){
+		if (ship_row <= 7 && c=='w') {
+			System.out.println("The ship can't move higher");
+		}
+		else if (ship_row >= 9 && c=='s') {
+			System.out.println("The ship can't move lower");
+		}
+		else {
 			grix.removeObject(ship_row , ship_column);
 			ship_row = one.moveShipUD(c,ship_row,ship_column);
 			grix.placeObject('S', ship_row,ship_column);
 			grix.print();
+		}
 
 	}
 	else if (c=='d'||c=='a') {
+		if (ship_column <= 0 && c=='a') {
+			System.out.println("The ship can't more right");
+		}
+		else if (ship_column >= 10 && c == 'd') {
+			System.out.println("The ship can't move left");
+		}
+		else {
 		grix.removeObject(ship_row , ship_column);
 		ship_column = one.moveShipLR(c,ship_row,ship_column);
 		grix.placeObject('S', ship_row,ship_column);
 		grix.print();
+		}
 	}
 	else if (c== 'l'){
 		int bullet_row = ship_row-1;
 		int bullet_column = ship_column;
 		boolean empty = false;
 		while (empty == false){
-			if (grix.getObject(bullet_row, bullet_column) == ' '){// the problem is around here, since both the ship and bullet use the same row and colmn variable
+			if (bullet_row <= -1) {
+				System.out.println("The bullet didn't hit anything");
+				empty = true;
+				grix.removeObject(bullet_row+1, bullet_column);
+			}
+			else if (grix.getObject(bullet_row, bullet_column) == ' '){// the problem is around here, since both the ship and bullet use the same row and colmn variable
 				grix.placeObject('|', bullet_row, bullet_column);
 			if (grix.getObject(bullet_row+1, bullet_column)=='|'){
 				grix.removeObject(bullet_row+1, bullet_column);
