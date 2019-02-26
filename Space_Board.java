@@ -43,54 +43,70 @@ public void print(){
 public static void main(String [] args){
 	Enemies any = new Enemies();
 	Space_Board grix = new Space_Board(any.generateEnemies());
-	int row = 9;
-	int column = 5;
-	grix.placeObject('S', row,column);
+	int ship_row = 9;
+	int ship_column = 5;
+	grix.placeObject('S', ship_row, ship_column);
 
 	grix.print();
 	Scanner reader = new Scanner(System.in);
-	char c = reader.next().charAt(0);
+	
 	Avatar one = new Avatar();
-	int maxEnemies = 15; //this should be change to 5 if only doing five enemies
+	int maxEnemies = 5; //this should be change to 5 if only doing five enemies
 	while (maxEnemies > 0){
-
+		char c = reader.next().charAt(0);
 	if (c=='w' || c=='s'){
-			grix.removeObject(row , column);
-			row = one.moveShipUD(c,row,column);
-			grix.placeObject('S', row,column);
+			grix.removeObject(ship_row , ship_column);
+			ship_row = one.moveShipUD(c,ship_row,ship_column);
+			grix.placeObject('S', ship_row,ship_column);
 			grix.print();
 
 	}
 	else if (c=='d'||c=='a') {
-		grix.removeObject(row , column);
-		column = one.moveShipLR(c,row,column);
-		grix.placeObject('S', row,column);
+		grix.removeObject(ship_row , ship_column);
+		ship_column = one.moveShipLR(c,ship_row,ship_column);
+		grix.placeObject('S', ship_row,ship_column);
 		grix.print();
 	}
 	else if (c== 'l'){
+		int bullet_row = ship_row-1;
+		int bullet_column = ship_column;
 		boolean empty = false;
 		while (empty == false){
-			if (grix.getObject(row-1, column) == ' '){// the problem is around here, since both the ship and bullet use the same row and colmn variable
-				grix.placeObject('|', row-1, column);
-				grix.print();
-			if (grix.getObject(row, column)=='|'){
-				grix.removeObject(row, column);
+			if (grix.getObject(bullet_row, bullet_column) == ' '){// the problem is around here, since both the ship and bullet use the same row and colmn variable
+				grix.placeObject('|', bullet_row, bullet_column);
+			if (grix.getObject(bullet_row+1, bullet_column)=='|'){
+				grix.removeObject(bullet_row+1, bullet_column);
+				
 		}
-		row-=1;
+			grix.print();
+		bullet_row-=1;
 	}
 	else{
-		grix.removeObject(row-1, column);
-		grix.removeObject(row,column);
+		grix.removeObject(bullet_row,bullet_column);
+		grix.removeObject(bullet_row+1, bullet_column);
 
 		empty = true;
 		maxEnemies -= 1;
 	}
 
 }
+		
 	grix.print();
 
 }
-c = reader.next().charAt(0);
+	else if (c=='p') {
+		
+	}
+	else {
+		System.out.println("Use 'wasd' to move and 'l' to shoot, 'p' to quit");
+	}
+
+	if (c=='p') {
+		maxEnemies = 0;
+	}
+	else {
+	}
 }
+	System.out.println("You Won!");
 }
 }
