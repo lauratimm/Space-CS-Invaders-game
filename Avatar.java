@@ -1,51 +1,49 @@
 import java.util.*;
+// The avatar class creates a ship initially located in row; 9 and column; 5.
+// It assigns 'S' to the ship as the identifying letter.
+// There are getter methods for all instance variables.
+// And two method to either move the ship Up/Down or Left/Right.
 public class Avatar{
+	
+	// instance variables
+	private char name = 'S';
+	private int row = 9;
+	private int column = 5;
 
-  private char ship = 'S';
+	// gets the letter assigned to the ship
+	public char getName() {
+		return this.name;
+	}
+	
+	// gets the row of the ship
+	public int getRow(){
+		return this.row;
+		}
 
-  // Initial coordinates of the ship, as list indices.
-  private int row = 9;
-  private int column = 5;
+	// get the column of the ship
+	public int getColumn(){
+		return this.column;
+		}
 
-  // Getter methods are needed to provide bullet with the location of the ship.
-  public int getRow(){
-    return this.row;
-  }
-
-  public int getColumn(){
-    return this.column;
-  }
-
-  // Based on user input move in a specific direction
-  // Will also remove ship from previous space and place it in new space.
-  public int moveShipUD(char input, int row, int column) {
-    //first, get rid of old ship by calling the inherited method
-    // determine what direction to move
-    if (input == 'w') {
-      row -= 1;
-    }
-    else if (input == 's') {
-      row += 1;
-    }
-    return row;
-    //place new ship with new coord also using method from Space_Board.
-    //this.placeObject(ship, row, column);
-  }
-  public int moveShipLR(char input, int row, int column) {
-    //first, get rid of old ship by calling the inherited method
-    // determine what direction to move
-    if (input == 'd') {
-      column += 1;
-    }
-    else if (input == 'a') {
-      column -= 1;
-    }
-    return column;
-    //place new ship with new coord also using method from Space_Board.
-    //this.placeObject(ship, row, column);
-  }
-
-
-
-
-}
+	// moves the ship up or down, based on input; by changing the row
+	public int moveShipUD(char input, int row, int column) {
+		if (input == 'w') {
+			row -= 1;
+		}
+		else if (input == 's') {
+			row += 1;
+		}
+		return row;
+	  	}
+	
+	// moves the ship left or right based on input, by changing the column
+	public int moveShipLR(char input, int row, int column) {
+		if (input == 'd') {
+			column += 1;
+		}
+		else if (input == 'a') {
+			column -= 1;
+		}
+		return column;
+		}
+	}
