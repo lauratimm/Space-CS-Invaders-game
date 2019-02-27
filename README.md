@@ -12,3 +12,4 @@ Controls for the ship:
   'a' to go left 
   'd' to go right 
   'l' to shoot bullets 
+  'p' to exit the game 
