@@ -1,49 +1,84 @@
-import java.util.*;
-// The avatar class creates a ship initially located in row; 9 and column; 5.
-// It assigns 'S' to the ship as the identifying letter.
-// There are getter methods for all instance variables.
-// And two method to either move the ship Up/Down or Left/Right.
-public class Avatar{
-	
-	// instance variables
-	private char name = 'S';
-	private int row = 9;
-	private int column = 5;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.scene.layout.*;
+import javafx.scene.control.*;
+import javafx.geometry.*;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.paint.Color;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import java.lang.Math.*;
 
-	// gets the letter assigned to the ship
-	public char getName() {
-		return this.name;
-	}
-	
-	// gets the row of the ship
-	public int getRow(){
-		return this.row;
-		}
+public class Avatar extends ImageView {
+  boolean dead;
+  String type;
+  double velX = 0;
+  double velY = 0;
+  //int tries = 5;
+  //Image image;
+  //ImageView iv = new ImageView();
 
-	// get the column of the ship
-	public int getColumn(){
-		return this.column;
-		}
 
-	// moves the ship up or down, based on input; by changing the row
-	public int moveShipUD(char input, int row, int column) {
-		if (input == 'w') {
-			row -= 1;
-		}
-		else if (input == 's') {
-			row += 1;
-		}
-		return row;
-	  	}
-	
-	// moves the ship left or right based on input, by changing the column
-	public int moveShipLR(char input, int row, int column) {
-		if (input == 'd') {
-			column += 1;
-		}
-		else if (input == 'a') {
-			column -= 1;
-		}
-		return column;
-		}
-	}
+
+  Avatar(int x, int y, int w, int h, String t, Image image){
+    super(image);
+    setFitWidth(w);
+    setFitHeight(h);
+    setX(x);
+    setY(y);
+    this.type = t;
+    this.dead = false;
+
+  }
+
+  void moveLeft(){
+    if (getX() > 0){
+      setX(getX() - 5);
+    }
+    else{
+    }
+  }
+
+  void moveRight(){
+    if (getX() < 540){
+      setX(getX() + 5);
+    }
+    else{
+    }
+  }
+
+  void moveUp(){
+    if (getY() > 0){
+      setY(getY() - 5);
+    }
+    else{
+    }
+  }
+
+  void moveDown(){
+    if (getY() < 740){
+      setY(getY() + 5);
+    }
+    else{
+    }
+  }
+
+  void moveRan(){
+    double r = Math.random();
+    if (r < 0.25 && getX() > 0){
+      setX(getX() - 4);
+    }
+    else if (r < 0.5 && getX() < 600){
+      setX(getX() + 4);
+    }
+    else if (r < 0.75 && getY() > 0){
+      setY(getY() - 4);
+    }
+    else if (r < 0.99 && getY() < 500){
+      setY(getY() + 4);
+    }
+  }
+}
