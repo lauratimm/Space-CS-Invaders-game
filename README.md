@@ -16,3 +16,22 @@ Controls for the ship:
   'd' to go right 
   'l' to shoot bullets 
   'p' to exit the game 
+
+References:
+Our game currently is based on Space Invaders developed by Taito, but will be similar to a Bullet Hell game when we are finished 
+
+JavaFX:
+https://www.youtube.com/watch?v=l2XhUHW8Oa4
+
+ArrayList:
+https://youtu.be/k6rTH77tML0?t=76
+
+Inheritance Ideas: 
+https://www.youtube.com/watch?v=GDG-wzEZW8E&list=PLEH2kL-crMGFSXqNd98feVwJ_aem1JiEi&index=2
+
+Using the random function:
+https://stackoverflow.com/questions/5887709/getting-random-numbers-in-java
+
+Other:
+Verwaal, N. (2019.). Computer Science 219. Lecture and Class Examples presented at University of Calgary, Calgary.
+Savitch, W. J. (2018). Java: An introduction to problem solving and programming. Upper Saddle River: Pearson.
