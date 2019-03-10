@@ -138,6 +138,7 @@ public class Spaces extends Application{
 	public void removeHeart(){
 			layout.getChildren().removeAll(numli);
 			numli.remove(avatar.getLife());
+			numHeart();
 	}
 
 
@@ -184,13 +185,16 @@ public class Spaces extends Application{
 					else if (shoot.getBoundsInParent().intersects(avatar.getBoundsInParent())){
 						layout.getChildren().remove(shoot);
 						//layout.getChildren().remove(avatar);
-						avatar.loseLife();
-						removeHeart();
+
+							if (avatar.getLife()>0){
+								avatar.loseLife();
+								removeHeart();
+						}
 						System.out. println(avatar.getLife());
 						stop();
 					}
-	
-					}
+
+
 				}
 
 			}

@@ -39,6 +39,6 @@ public class Avatar extends Character{
 		return life;
 	}
 	public void loseLife() {
-		life -= .5;
+		life -= 1;
 	}
 }
