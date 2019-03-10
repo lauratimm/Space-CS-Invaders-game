@@ -1,4 +1,6 @@
 import javafx.application.Application;
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -19,232 +21,203 @@ import java.util.ArrayList;
 
 
 public class Spaces extends Application{
-  Stage window;
-  Scene scene;
-  double t = 0;
-  Pane layout = new Pane();
-  Image image = new Image("avatar.png");
-  Image image2 = new Image("enemy.png");
-  Image image3 = new Image("heart.png");
-  //Image image4 = new Image("gheart.png");
-  Avatar avatar = new Avatar(300, 700, 60, 60, "avatar", image);
-  Avatar ailen = new Avatar(300, 200, 40, 40, "enemy", image2);
-  //Avatar heart = new Avatar(10, 765, 20, 20, "heart", image3);
-  int life = 5;
-  //ArrayList<Avatar> numli = new ArrayList<Avatar>(5);
+	Stage window;
+	Scene scene;
+	double t = 0;
+	Pane layout = new Pane();
+	Image image = new Image("avatar.png");
+	Image image2 = new Image("enemy.png");
+	Image image3 = new Image("heart.png");
+
+	Avatar avatar = new Avatar(300, 700, 60, 60, "avatar", image);
+	Enemy alien = new Enemy(300, 200, 40, 40, "enemy", image2);
+	Enemy alien2 = new Enemy(100, 300, 40, 40, "enemy", image2);
+	Enemy alien3 = new Enemy(200, 200, 40, 40, "enemy", image2);
+	Enemy alien4 = new Enemy(300, 300, 40, 40, "enemy", image2);
+	Enemy alien5 = new Enemy(250, 350, 40, 40, "enemy", image2);
+	
+	
+	int numEnemies = 10;
 
 
-  public static void main(String[] args){
-    launch(args);
-  }
+	public static void main(String[] args){
+		launch(args);
+	}
 
-  @Override
-  public void start(Stage primaryStage) throws Exception{
-    window = primaryStage;
-    window.setTitle("Space Invaders");
-    //Image image = new Image("avatar.png");
-    //Image image2 = new Image("enemy.png");
-
-    //Obj avatar = new Obj(300, 750, 40, 40, "avatar", Color.BLUE);
-    //Avatar avatar = new Avatar(300, 700, 60, 60, "avatar", image);
-    //Avatar ailen = new Avatar(300, 200, 60, 60, "enemy", image2);
-    //Enemy enemy = new Enemy(60,60,"enemy", image2);
-
-
-
-
-    //Pane layout = new Pane();
-    layout.getChildren().add(avatar);
-    layout.getChildren().add(ailen);
-    //layout.getChildren().add(heart);
-    //layout.getChildren().add(enemy);
-
-
-
-    AnimationTimer eTimer = new AnimationTimer(){
-      @Override
-      public void handle(long now){
-        //update();
-        ailen.moveRan();
-        if (Math.random() < 0.01){
-          if (!ailen.dead){
-            shoot(ailen, Color.RED);
-          }
-          //shoot(ailen);
-        }
+	@Override
+	public void start(Stage primaryStage) throws Exception{
+		window = primaryStage;
+		window.setTitle("Space Invaders");
+		layout.getChildren().add(avatar);
+		layout.getChildren().addAll(alien, alien2, alien3, alien4, alien5);		
+		
+		AnimationTimer eTimer = new AnimationTimer(){		
+	
+		
+	@Override
+	public void handle(long now){
+		alien.moveRan();
+		alien2.moveRan();
+		alien3.moveRan();
+		alien4.moveRan();
+		alien5.moveRan();
+		
+		if (Math.random() < .01){
+			if (!alien.dead){
+				shoot(alien, Color.RED);
+			}
+		}
+		if (Math.random() < .01){
+			if (!alien2.dead){
+				shoot(alien2, Color.RED);
+			}
+		}
+		if (Math.random() < .01){
+			if (!alien3.dead){
+				shoot(alien3, Color.RED);
+			}
+		}
+		if (Math.random() < .01){
+			if (!alien4.dead){
+				shoot(alien4, Color.RED);
+			}
+		}
+		if (Math.random() < .01){
+			if (!alien5.dead){
+				shoot(alien5, Color.RED);
+			}
+		}
       }
     };
-
-    eTimer.start();
-
-
-
-
-
-
-
-
-    scene = new Scene(layout, 600, 800, Color.BLACK);
-
-
-    scene.setOnKeyPressed(e -> {
-      switch (e.getCode()){
-        case A:
-          avatar.moveLeft();
-          //System.out.println(avatar.getX());
-
+    
+    	eTimer.start();
+    
+    	scene = new Scene(layout, 600, 800, Color.BLACK);
+    	scene.setOnKeyPressed(e -> {
+    		
+    		switch (e.getCode()){
+    		case A:
+    			avatar.moveLeft();
+    			break;
+        
+    		case D:
+    			avatar.moveRight();
+    			break;
+    		
+    		case W:
+    			avatar.moveUp();
+    			break;
+    		case S:
+    			avatar.moveDown();	
+    			break;
+    		
+    		case SPACE:
+    			shoot(avatar,Color.YELLOW);
           break;
-        case D:
-          avatar.moveRight();
-
-          break;
-        case W:
-          avatar.moveUp();
-
-          break;
-        case S:
-          avatar.moveDown();
-
-          break;
-        case SPACE:
-          shoot(avatar,Color.YELLOW);
-
-
-          break;
+			default:
+				break;
       }
     });
-
-
-
-
+ 
     numHeart();
     window.setScene(scene);
     window.show();
-  }
+	}
+	
+	public void numHeart(){
+		int f = 10;
+		ArrayList<Character> numli = new ArrayList<Character>(5);
+		for (int i = 0; i < avatar.getLife(); i++){
+			Character insertHeart = new Character(f, 10, 20, 20, "heart", image3);
+			numli.add(insertHeart);
+			f+=30;
+		}
+		for (Character heart: numli){
+			layout.getChildren().add(heart);
+		}
+	}
+	
 
+	public void shoot(Character p, Color c){
 
-  public void numHeart(){
-    int f = 10;
-    ArrayList<Avatar> numli = new ArrayList<Avatar>(5);
-    for (int i = 0; i < life; i++){
-      Avatar h = new Avatar(f, 765, 20, 20, "heart", image3);
-      numli.add(h);
-      f+=30;
-    }
-    for (Avatar a: numli){
-      layout.getChildren().add(a);
+		Bullet shoot = new Bullet((int) p.getX() + 20, (int) p.getY(), 5, 20, p.type+"Bullet", c);
+		layout.getChildren().add(shoot);
 
+		AnimationTimer bulletTimer = new AnimationTimer(){
+			
+		@Override
+		public void handle(long now){
+			
+			
+			ArrayList<Enemy> numE = new ArrayList<Enemy>();
+			numE.add(alien);
+			numE.add(alien2);
+			numE.add(alien3);
+			numE.add(alien4);
+			numE.add(alien5);
+			
+			for (Enemy enemy: numE) {
+				if (shoot.getType().equals("avatarBullet")){
+					if (!shoot.getBoundsInParent().intersects(enemy.getBoundsInParent()) && shoot.getTranslateY() > -20) {
+						shoot.moveUp();
+					}
+					else if (shoot.getBoundsInParent().intersects(enemy.getBoundsInParent()) ){
+						enemy.dead = true;
+						layout.getChildren().remove(enemy);
+						layout.getChildren().remove(shoot);
+						enemy.delete();
+						
+						//alien = new Enemy(-1, -1, 1, 1, "enemy", image2);
+						//alien.dead = true;
+						
+					}
+				}
+				else if (shoot.getType().equals("enemyBullet") ){
+					if (!shoot.getBoundsInParent().intersects(avatar.getBoundsInParent()) && shoot.getTranslateY() < 800){
+						shoot.moveDown();
+					}
+					else if (shoot.getBoundsInParent().intersects(avatar.getBoundsInParent())){
+						layout.getChildren().remove(shoot);
+						//layout.getChildren().remove(avatar);
+						
+			
+					}
+				}
 
-    }
-
-    /**
-    int f = 10;
-    for (int i = 0; i < life; i++){
-      Avatar h = new Avatar(f, 765, 20, 20, "heart", image3);
-      f += 30;
-      layout.getChildren().add(h);
-
-    }
-    */
-
-  }
-
-
-
-/**
-  public List<Avatar> avatarss() {
-          return layout.getChildren().stream().map(n -> (Avatar)n).collect(Collectors.toList());
-      }
-*/
-
-
-
-  public void update(){
-
-
-
-  }
-
-
-
-  public void shoot(Avatar p, Color c){
-
-    Obj s = new Obj((int) p.getX() + 20, (int) p.getY(), 5, 20, p.type+"Bullet", c);
-
-
-
-    layout.getChildren().add(s);
-    //System.out.println(s.type);
-
-
-    AnimationTimer bTimer = new AnimationTimer(){
-      @Override
-      public void handle(long now){
-        //ailen.moveRan();
-        //s.moveUp();
-        if (s.type.equals("avatarBullet")){
-          if (!s.getBoundsInParent().intersects(ailen.getBoundsInParent()) && s.getTranslateY() > -20) {
-            //System.out.println("s");
-
-            s.moveUp();
-
-          }
-          else if (s.getBoundsInParent().intersects(ailen.getBoundsInParent()) ){
-            ailen.dead = true;
-            layout.getChildren().remove(ailen);
-            layout.getChildren().remove(s);
-            //closeProgram();
-            //t.stop();
-
-            //System.out.println(ailen.dead);
-
-          }
-
-          //System.out.println("ss");
-          //s.moveUp();
-        }
-
-        else if (s.type.equals("enemyBullet") ){
-          if (!s.getBoundsInParent().intersects(avatar.getBoundsInParent()) && s.getTranslateY() < 800){
-            //System.out.println("a");
-            s.moveDown();
-          }
-          else if (s.getBoundsInParent().intersects(avatar.getBoundsInParent())){
-            //avatar.dead = true;
-            layout.getChildren().remove(s);
-
-
-
-            //System.out.println(life);
-          }
-        }
-
-      }
-    };
-
-    bTimer.start();
-
-
-
-
-    //update();
-  }
-
-  public void loseLife(){
-    life -= 1;
-  }
-
-
-
-/**
-  public int getBX(){
-    return shoot().getTranslateX();
-  }
-
-  public int getBY(){
-    return shoot().getTranslateY();
-  }
-*/
-
-
+			}
+			
+			/*
+        
+			if (shoot.getType().equals("avatarBullet")){
+				if (!shoot.getBoundsInParent().intersects(alien.getBoundsInParent()) && shoot.getTranslateY() > -20) {
+					shoot.moveUp();
+				}
+				else if (shoot.getBoundsInParent().intersects(alien.getBoundsInParent()) ){
+					alien.dead = true;
+					layout.getChildren().remove(alien);
+					layout.getChildren().remove(shoot);
+					
+					//alien = new Enemy(-1, -1, 1, 1, "enemy", image2);
+					//alien.dead = true;
+					
+				}
+			}
+			else if (shoot.getType().equals("enemyBullet") ){
+				if (!shoot.getBoundsInParent().intersects(avatar.getBoundsInParent()) && shoot.getTranslateY() < 800){
+					shoot.moveDown();
+				}
+				else if (shoot.getBoundsInParent().intersects(avatar.getBoundsInParent())){
+					layout.getChildren().remove(shoot);
+					layout.getChildren().remove(avatar);
+					
+		
+				}
+			}
+			
+			*/
+			
+		}
+    }; 
+    bulletTimer.start();
+	}
 }
