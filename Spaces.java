@@ -185,20 +185,19 @@ public class Spaces extends Application{
 					else if (shoot.getBoundsInParent().intersects(avatar.getBoundsInParent())){
 						layout.getChildren().remove(shoot);
 						//layout.getChildren().remove(avatar);
-
-							if (avatar.getLife()>0){
-								avatar.loseLife();
-								removeHeart();
-						}
-						System.out. println(avatar.getLife());
 						stop();
 					}
-
-
 				}
 
 			}
+			if (shoot.getBoundsInParent().intersects(avatar.getBoundsInParent())){
+				if (avatar.getLife()>0){
+					avatar.loseLife();
+					removeHeart();
+					System.out. println(avatar.getLife());
+				}
 
+		}
 			/*
 
 			if (shoot.getType().equals("avatarBullet")){
