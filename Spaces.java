@@ -137,7 +137,7 @@ public class Spaces extends Application{
 	}
 	public void removeHeart(){
 			layout.getChildren().removeAll(numli);
-			numli.remove(avatar.getLife());
+			numli.removeAll(numli);
 			numHeart();
 	}
 
