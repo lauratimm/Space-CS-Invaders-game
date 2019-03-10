@@ -1,19 +1,44 @@
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.Group;
-import javafx.stage.Stage;
-import javafx.scene.image.*;
-import javafx.scene.layout.*;
-import javafx.scene.control.*;
-import javafx.scene.shape.*;
-import javafx.event.*;
+import javafx.scene.image.Image;
 
-public class Avatar{
-Rectangle ship = new Rectangle(100,200);
+public class Avatar extends Character{
 
-public Rectangle getShip(){
-  return ship;
-  }
+	//Instance Variable
 
-  
-  }
+	private int life = 5;
+
+	public Avatar(int x, int y, int w, int h, String t, Image image) {
+		super(x, y, w, h, t, image);
+	}
+
+	//Avatar Movements
+	public void moveLeft(){
+		if (getX() > 0){
+			setX(getX() - 10);
+		}
+	}
+
+	public void moveRight(){
+		if (getX() < 540){
+			setX(getX() + 10);
+		}
+    }
+
+	public void moveUp(){
+		if (getY() > 0){
+			setY(getY() - 10);
+		}
+	}
+
+	public void moveDown(){
+		if (getY() < 740){
+			setY(getY() + 10);
+		}
+	}
+
+	public int getLife() {
+		return life;
+	}
+	public void loseLife() {
+		life -= .5;
+	}
+}
