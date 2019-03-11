@@ -25,8 +25,12 @@ public class Spaces extends Application{
 	Scene scene;
 	double t = 0;
 	Pane layout = new Pane();
+
+	//https://opengameart.org/content/spaceship-set-4-pixel-art-space-ships
 	Image image = new Image("avatar.png");
+	//https://commons.wikimedia.org/wiki/File:Space_invaders_alien.svg
 	Image image2 = new Image("enemy.png");
+	//https://ya-webdesign.com/explore/video-game-heart-png/
 	Image image3 = new Image("heart.png");
 
 	Avatar avatar = new Avatar(300, 700, 60, 60, "avatar", image);
