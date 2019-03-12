@@ -42,6 +42,7 @@ public class Spaces extends Application{
 	Enemy alien5 = new Enemy(250, 350, 40, 40, "enemy", image2);
 
 	ArrayList<Character> numli = new ArrayList<Character>(5);
+	Heart heart = new Heart();
 
 	public static void main(String[] args){
 		launch(args);
@@ -85,45 +86,30 @@ public class Spaces extends Application{
     		}
     });
 
-    numHeart();
+    heart.numHeart(numli, avatar, image3);
+    layout.getChildren().addAll(numli);
     window.setScene(scene);
     window.show();
 	}
 
-	public void numHeart(){
-		int f = 10;
-		for (int i = 0; i < avatar.getLife(); i++){
-			Character insertHeart = new Character(f, 10, 20, 20, "heart", image3);
-			numli.add(insertHeart);
-			f+=30;
-		}
-			layout.getChildren().addAll(numli);
-	}
-	public void removeHeart(){
-			layout.getChildren().removeAll(numli);
-			numli.removeAll(numli);
-			numHeart();
-	}
-
-
 	public void shoot(Character p, Color c){
 
-		Bullet shoot = new Bullet((int) p.getX() + 20, (int) p.getY(), 5, 20, p.type+"Bullet", c);
-		layout.getChildren().add(shoot);
+		Bullet bullet = new Bullet((int) p.getX() + 20, (int) p.getY(), 5, 20, p.type+"Bullet", c);
+		layout.getChildren().add(bullet);
 
 		AnimationTimer bulletTimer = new AnimationTimer(){
 
 		@Override
 		public void handle(long now){
 			for (int i = 0; i < 5; i++) {
-				if (shoot.getType().equals("avatarBullet")){
-					if (!shoot.getBoundsInParent().intersects(enemyList.get(i).getBoundsInParent()) && shoot.getTranslateY() > -20) {
-						shoot.moveUp();
+				if (bullet.getType().equals("avatarBullet")){
+					if (!bullet.getBoundsInParent().intersects(enemyList.get(i).getBoundsInParent()) && bullet.getTranslateY() > -20) {
+						bullet.moveUp();
 					}
-					else if (shoot.getBoundsInParent().intersects(enemyList.get(i).getBoundsInParent()) ){
+					else if (bullet.getBoundsInParent().intersects(enemyList.get(i).getBoundsInParent()) ){
 						enemyList.get(i).dead = true;
 						layout.getChildren().remove(enemyList.get(i));
-						layout.getChildren().remove(shoot);
+						layout.getChildren().remove(bullet);
 						enemyList.get(i).delete();
 
 
@@ -132,23 +118,25 @@ public class Spaces extends Application{
 
 					}
 				}
-				else if (shoot.getType().equals("enemyBullet") ){
+				else if (bullet.getType().equals("enemyBullet") ){
 					int count = 0;
-					if (!shoot.getBoundsInParent().intersects(avatar.getBoundsInParent()) && shoot.getTranslateY() < 800){
-						shoot.moveDown();
+					if (!bullet.getBoundsInParent().intersects(avatar.getBoundsInParent()) && bullet.getTranslateY() < 800){
+						bullet.moveDown();
 					}
-					else if (shoot.getBoundsInParent().intersects(avatar.getBoundsInParent())){
-						layout.getChildren().remove(shoot);
+					else if (bullet.getBoundsInParent().intersects(avatar.getBoundsInParent())){
+						layout.getChildren().remove(bullet);
 						//layout.getChildren().remove(avatar);
 						stop();
 					}
 				}
 
 			}
-			if (shoot.getBoundsInParent().intersects(avatar.getBoundsInParent())){
+			if (bullet.getBoundsInParent().intersects(avatar.getBoundsInParent())){
 				if (avatar.getLife()>0){
 					avatar.loseLife();
-					removeHeart();
+					layout.getChildren().removeAll(numli);
+					heart.removeHeart(numli, avatar, image3);
+					layout.getChildren().addAll(numli);
 					System.out. println(avatar.getLife());
 				}
 
