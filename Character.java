@@ -32,6 +32,13 @@ public class Character extends ImageView {
 		type = t;
 		dead = false;
 	}
+	public void delete() {
+		setFitWidth(1);
+		setFitHeight(1);
+		setX(-100);
+		setY(-100);
+	}
+
 	
 /*	
 	public void tickX(double d) {

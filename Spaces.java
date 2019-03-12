@@ -1,13 +1,16 @@
 import javafx.application.Application;
 import java.awt.*;
+import java.awt.Label;
 import java.awt.event.KeyEvent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.geometry.*;
 import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
@@ -23,6 +26,7 @@ import java.util.ArrayList;
 public class Spaces extends Application{
 	Stage window;
 	Scene scene;
+	boolean avatar_dead = false;
 	double t = 0;
 	ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
 	Pane layout = new Pane();
@@ -54,6 +58,7 @@ public class Spaces extends Application{
 		window.setTitle("Space Invaders");
 		layout.getChildren().add(avatar);
 		layout.getChildren().addAll(alien, alien2, alien3, alien4, alien5);
+		
 
 		AnimationTimer eTimer = new AnimationTimer(){
 
@@ -62,7 +67,12 @@ public class Spaces extends Application{
 	public void handle(long now){
 		alien.setEnemyList(alien, alien2, alien3, alien4, alien5);
 		enemyList = alien.getEnemyList();
-		
+		if (avatar_dead) {
+			stop();
+			
+			
+		}
+
 		for (int i = 0; i < 5; i++) {
 			enemyList.get(i).moveRan();
 		}		
@@ -84,7 +94,9 @@ public class Spaces extends Application{
     		if (avatar.movement(e.getCode()) == true){
     			shoot(avatar,Color.YELLOW);
     		}
+
     });
+		
 
     heart.numHeart(numli, avatar, image3);
     layout.getChildren().addAll(numli);
@@ -101,69 +113,16 @@ public class Spaces extends Application{
 
 		@Override
 		public void handle(long now){
-			for (int i = 0; i < 5; i++) {
-				if (bullet.getType().equals("avatarBullet")){
-					if (!bullet.getBoundsInParent().intersects(enemyList.get(i).getBoundsInParent()) && bullet.getTranslateY() > -20) {
-						bullet.moveUp();
-					}
-					else if (bullet.getBoundsInParent().intersects(enemyList.get(i).getBoundsInParent()) ){
-						enemyList.get(i).dead = true;
-						layout.getChildren().remove(enemyList.get(i));
-						layout.getChildren().remove(bullet);
-						enemyList.get(i).delete();
-
-
-						//alien = new Enemy(-1, -1, 1, 1, "enemy", image2);
-						//alien.dead = true;
-
-					}
-				}
-				else if (bullet.getType().equals("enemyBullet") ){
-					int count = 0;
-					if (!bullet.getBoundsInParent().intersects(avatar.getBoundsInParent()) && bullet.getTranslateY() < 800){
-						bullet.moveDown();
-					}
-					else if (bullet.getBoundsInParent().intersects(avatar.getBoundsInParent())){
-						layout.getChildren().remove(bullet);
-						//layout.getChildren().remove(avatar);
-						stop();
-					}
-				}
-
+			int idk = bullet.shooter(avatar, enemyList, layout, heart, numli, image3);
+			if(idk == 2) {
+				stop();
 			}
-			if (bullet.getBoundsInParent().intersects(avatar.getBoundsInParent())){
-				if (avatar.getLife()>0){
-					avatar.loseLife();
-					layout.getChildren().removeAll(numli);
-					heart.removeHeart(numli, avatar, image3);
-					layout.getChildren().addAll(numli);
-					System.out. println(avatar.getLife());
-				}
-
-		}
-			/*
-			if (shoot.getType().equals("avatarBullet")){
-				if (!shoot.getBoundsInParent().intersects(alien.getBoundsInParent()) && shoot.getTranslateY() > -20) {
-					shoot.moveUp();
-				}
-				else if (shoot.getBoundsInParent().intersects(alien.getBoundsInParent()) ){
-					alien.dead = true;
-					layout.getChildren().remove(alien);
-					layout.getChildren().remove(shoot);
-					//alien = new Enemy(-1, -1, 1, 1, "enemy", image2);
-					//alien.dead = true;
-				}
+			if (avatar.getLife() == 0) {
+				avatar.delete();
+				avatar_dead = true;
+				
 			}
-			else if (shoot.getType().equals("enemyBullet") ){
-				if (!shoot.getBoundsInParent().intersects(avatar.getBoundsInParent()) && shoot.getTranslateY() < 800){
-					shoot.moveDown();
-				}
-				else if (shoot.getBoundsInParent().intersects(avatar.getBoundsInParent())){
-					layout.getChildren().remove(shoot);
-					layout.getChildren().remove(avatar);
-				}
-			}
-			*/
+			
 
 		}
     };

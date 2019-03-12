@@ -44,12 +44,6 @@ public class Enemy extends Character{
 		return enemyList;
 	}
 	
-	public void delete() {
-		setFitWidth(1);
-		setFitHeight(1);
-		setX(-100);
-		setY(-100);
-	}
 	public boolean enemyShoot() {
 		boolean shoot = false;
 		if (Math.random()<0.01) {
@@ -59,6 +53,7 @@ public class Enemy extends Character{
 		}
 		return shoot;
 	}
+	
 	
 	
 }
