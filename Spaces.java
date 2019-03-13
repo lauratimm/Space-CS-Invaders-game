@@ -1,29 +1,15 @@
 import javafx.application.Application;
-import java.awt.*;
-import java.awt.Label;
-import java.awt.event.KeyEvent;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.layout.*;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.geometry.*;
 import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.paint.Color;
-import java.util.*;
-import java.util.stream.*;
-import java.util.function.*;
 import java.util.ArrayList;
-//import java.animation.TranslateTransition;
-
 
 public class Spaces extends Application{
 	Stage window;
@@ -54,7 +40,7 @@ public class Spaces extends Application{
 
 	public static void main(String[] args){
 		launch(args);
-	}
+		}
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception{
@@ -62,65 +48,48 @@ public class Spaces extends Application{
 		window.setTitle("Space Invaders");
 		layout.getChildren().add(avatar);
 		layout.getChildren().addAll(alien, alien2, alien3, alien4, alien5);
-
+		
 		AnimationTimer eTimer = new AnimationTimer(){
-
-
-	@Override
-	public void handle(long now){
-		alien.setEnemyList(alien, alien2, alien3, alien4, alien5);
-		enemyList = alien.getEnemyList();
-		if (avatar_dead) {
-			stop();
-			quit = 2;
-			endGame();
-			
-			
-		}
-		if (e_dead) {
-			stop();
-			quit = 1;
-			endGame();
-		}
-
-		for (int i = 0; i < 5; i++) {
-			enemyList.get(i).moveRan();
-		}		
-
-		
-		for (int i = 0; i < 5; i++) {
-			if (enemyList.get(i).enemyShoot() == true) {
-			shoot(enemyList.get(i), Color.RED);
+			@Override
+			public void handle(long now){
+				alien.setEnemyList(alien, alien2, alien3, alien4, alien5);
+				enemyList = alien.getEnemyList();
+				if (avatar_dead) {
+					stop();
+					quit = 2;
+					endGame();
+					}
+				if (e_dead) {
+					stop();
+					quit = 1;
+					endGame();
+					}
+				for (int i = 0; i < 5; i++) {
+					enemyList.get(i).moveRan();
+					}		
+				for (int i = 0; i < 5; i++) {
+					if (enemyList.get(i).enemyShoot() == true) {
+						shoot(enemyList.get(i), Color.RED);
+						}
+					}
+				}
+			};
+			eTimer.start();
+			scene = new Scene(layout, 600, 800, Color.BLACK);
+			scene.setOnKeyPressed(e -> {
+				if (e.getCode() == KeyCode.Q) {
+					quit = 0;
+					endGame();
+					}
+				else if (avatar.movement(e.getCode()) == true){
+					shoot(avatar,Color.YELLOW);
+					}
+				});
+			heart.numHeart(numli, avatar, image3);
+			layout.getChildren().addAll(numli);
+			window.setScene(scene);
+			window.show();
 			}
-		}
-
-      }
-    };
-
-    	eTimer.start();
-
-    	scene = new Scene(layout, 600, 800, Color.BLACK);
-    	scene.setOnKeyPressed(e -> {
-
-    	if (e.getCode() == KeyCode.Q) {
-    		quit = 0;
-    		endGame();
-    	}
-    	
-    		else if (avatar.movement(e.getCode()) == true){
-    			shoot(avatar,Color.YELLOW);
-    		}
-
-    });
-
-		
-
-    heart.numHeart(numli, avatar, image3);
-    layout.getChildren().addAll(numli);
-    window.setScene(scene);
-    window.show();
-	}
-
 	public void endGame() {
 		Button b1 = new Button ("Quit Game");
 		Text won = new Text (10, 10, "You Won!");
@@ -140,9 +109,8 @@ public class Spaces extends Application{
 			b1.setOnAction(e -> {
 				window.close();
 				newstage.close();
-			});
-			
-		}
+				});
+			}
 		else if (quit == 2) {
 			vbox.getChildren().add(lost);
 			vbox.getChildren().add(b1);
@@ -156,9 +124,8 @@ public class Spaces extends Application{
 			b1.setOnAction(e -> {
 				window.close();
 				newstage.close();
-			});
-			
-		}
+				});
+			}
 		else {
 			vbox.getChildren().add(b1);
 			vbox.setAlignment(Pos.CENTER);
@@ -171,37 +138,30 @@ public class Spaces extends Application{
 			b1.setOnAction(e -> {
 				window.close();
 				newstage.close();
-			});
-			
+				});
+			}
 		}
-		
-		
-	}
 	public void shoot(Character p, Color c){
 
 		Bullet bullet = new Bullet((int) p.getX() + 20, (int) p.getY(), 5, 20, p.type+"Bullet", c);
 		layout.getChildren().add(bullet);
 
 		AnimationTimer bulletTimer = new AnimationTimer(){
-
-		@Override
-		public void handle(long now){
-			int idk = bullet.shooter(avatar, enemyList, layout, heart, numli, image3);
-			if(idk == 2) {
-				stop();
+			@Override
+			public void handle(long now){
+				boolean avatar_hit = bullet.shooter(avatar, enemyList, layout, heart, numli, image3);
+				if(avatar_hit) {
+					stop();
+					}
+				if (avatar.getLife() == 0) {
+					avatar.delete();
+					avatar_dead = true;
+					}
+				if (avatar.getE_killed() == 5) {
+					e_dead = true;
+					}
+				}
+			};
+			bulletTimer.start();
 			}
-			if (avatar.getLife() == 0) {
-				avatar.delete();
-				avatar_dead = true;
-				
-			}
-			if (avatar.getE_killed() == 5) {
-				e_dead = true;
-			}
-			
-
-		}
-    };
-    bulletTimer.start();
 	}
-}

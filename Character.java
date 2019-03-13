@@ -1,28 +1,19 @@
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.scene.layout.*;
-import javafx.scene.control.*;
-import javafx.geometry.*;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import java.lang.Math.*;
+
+// This class is a parent class for Avatar and Enemy, which creates a
+// Character object. The class extends ImageView. When a character is created,
+// an image is assigned to the object, along with the width, height, and x and y 
+// coordinates of the object, and a String
 
 public class Character extends ImageView {
-	
-	boolean dead;
-	String type;
-	
-//	double x = 0;
-//	double y = 0;
-	 
-//	double velX = 0;
-//	double velY = 0;
 
+	// Instance variables
+	public boolean dead; // indicates whether the object is dead or not
+	public String type; // indicates the name of the object
+	
+	// Constructor which assigns an image to the object, along with the width, 
+	// height, and x and y coordinates of the object, and String type
 	public Character(int x, int y, int w, int h, String t, Image image){
 		super(image);
 		setFitWidth(w);
@@ -31,30 +22,14 @@ public class Character extends ImageView {
 		setY(y);
 		type = t;
 		dead = false;
-	}
+		}
+	
+	// Method which 'deletes' the object from the main stage by moving the object 
+	// outside the viewable stage
 	public void delete() {
 		setFitWidth(1);
 		setFitHeight(1);
 		setX(-100);
 		setY(-100);
+		}
 	}
-
-	
-/*	
-	public void tickX(double d) {
-		d += velX;	
-	}
-	
-	public void tickY(double y) {
-		y += velY;
-	}
-	
-	public void setVelX(Double velX) {
-		this.velX = velX;
-	}
-	public void setVelY(Double velY) {
-		this.velY = velY;
-	}
-	
-*/	
-}
