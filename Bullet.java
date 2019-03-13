@@ -51,6 +51,7 @@ public class Bullet extends Rectangle{
 					layout.getChildren().remove(enemyList.get(i));
 					layout.getChildren().remove(this);
 					enemyList.get(i).delete();
+					avatar.setE_killed(avatar.getE_killed() + 1);
 				}
 			}
 			else if (this.getType().equals("enemyBullet") ){
@@ -81,5 +82,6 @@ public class Bullet extends Rectangle{
 		
 		return ret;
 	}
+
 	
 }

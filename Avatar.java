@@ -7,6 +7,7 @@ public class Avatar extends Character{
 	//Instance Variable
 
 	private int life = 5;
+	private int e_killed = 0;
 
 	public Avatar(int x, int y, int w, int h, String t, Image image) {
 		super(x, y, w, h, t, image);
@@ -68,5 +69,13 @@ public class Avatar extends Character{
 			return shoot;
   }
 
+	}
+
+	public int getE_killed() {
+		return e_killed;
+	}
+
+	public void setE_killed(int e_killed) {
+		this.e_killed = e_killed;
 	}
 }

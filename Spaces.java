@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -15,6 +16,7 @@ import javafx.geometry.*;
 import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import java.util.*;
 import java.util.stream.*;
@@ -27,6 +29,8 @@ public class Spaces extends Application{
 	Stage window;
 	Scene scene;
 	boolean avatar_dead = false;
+	boolean e_dead = false;
+	int quit = 0;
 	double t = 0;
 	ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
 	Pane layout = new Pane();
@@ -58,7 +62,6 @@ public class Spaces extends Application{
 		window.setTitle("Space Invaders");
 		layout.getChildren().add(avatar);
 		layout.getChildren().addAll(alien, alien2, alien3, alien4, alien5);
-		
 
 		AnimationTimer eTimer = new AnimationTimer(){
 
@@ -69,8 +72,15 @@ public class Spaces extends Application{
 		enemyList = alien.getEnemyList();
 		if (avatar_dead) {
 			stop();
+			quit = 2;
+			endGame();
 			
 			
+		}
+		if (e_dead) {
+			stop();
+			quit = 1;
+			endGame();
 		}
 
 		for (int i = 0; i < 5; i++) {
@@ -83,6 +93,7 @@ public class Spaces extends Application{
 			shoot(enemyList.get(i), Color.RED);
 			}
 		}
+
       }
     };
 
@@ -91,11 +102,17 @@ public class Spaces extends Application{
     	scene = new Scene(layout, 600, 800, Color.BLACK);
     	scene.setOnKeyPressed(e -> {
 
-    		if (avatar.movement(e.getCode()) == true){
+    	if (e.getCode() == KeyCode.Q) {
+    		quit = 0;
+    		endGame();
+    	}
+    	
+    		else if (avatar.movement(e.getCode()) == true){
     			shoot(avatar,Color.YELLOW);
     		}
 
     });
+
 		
 
     heart.numHeart(numli, avatar, image3);
@@ -104,6 +121,62 @@ public class Spaces extends Application{
     window.show();
 	}
 
+	public void endGame() {
+		Button b1 = new Button ("Quit Game");
+		Text won = new Text (10, 10, "You Won!");
+		Text lost = new Text ("You Lost!");
+		VBox vbox = new VBox();
+		
+		if (quit == 1) {
+			vbox.getChildren().add(won);
+			vbox.getChildren().add(b1);
+			vbox.setAlignment(Pos.CENTER);
+			Stage newstage = new Stage();
+			Scene newscene = new Scene(vbox, 100, 100, Color.BLACK);
+			newstage.setScene(newscene);
+			newscene.setFill(Color.BLACK);
+			newstage.show();
+			
+			b1.setOnAction(e -> {
+				window.close();
+				newstage.close();
+			});
+			
+		}
+		else if (quit == 2) {
+			vbox.getChildren().add(lost);
+			vbox.getChildren().add(b1);
+			vbox.setAlignment(Pos.CENTER);
+			Stage newstage = new Stage();
+			Scene newscene = new Scene(vbox, 100, 100, Color.BLACK);
+			newstage.setScene(newscene);
+			newscene.setFill(Color.BLACK);
+			newstage.show();
+			
+			b1.setOnAction(e -> {
+				window.close();
+				newstage.close();
+			});
+			
+		}
+		else {
+			vbox.getChildren().add(b1);
+			vbox.setAlignment(Pos.CENTER);
+			Stage newstage = new Stage();
+			Scene newscene = new Scene(vbox, 100, 100, Color.BLACK);
+			newstage.setScene(newscene);
+			newscene.setFill(Color.BLACK);
+			newstage.show();
+			
+			b1.setOnAction(e -> {
+				window.close();
+				newstage.close();
+			});
+			
+		}
+		
+		
+	}
 	public void shoot(Character p, Color c){
 
 		Bullet bullet = new Bullet((int) p.getX() + 20, (int) p.getY(), 5, 20, p.type+"Bullet", c);
@@ -121,6 +194,9 @@ public class Spaces extends Application{
 				avatar.delete();
 				avatar_dead = true;
 				
+			}
+			if (avatar.getE_killed() == 5) {
+				e_dead = true;
 			}
 			
 
