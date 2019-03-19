@@ -7,13 +7,15 @@ import javafx.geometry.*;
 import javafx.application.Platform;
 
 
+
 public class MenuBox{
 
 
-  public static void display(String title, String message, String m){
+  public static void display(String title, String message, String m) {
 
     Stage window1 = new Stage();
-    String mode = "Q";
+    String modeQ = "Q";
+    String modeB = "B";
 
     //window1.initModality(Modality.APPLICATION_MODAL);
     window1.setTitle(title);
@@ -26,12 +28,17 @@ public class MenuBox{
     Button exitP = new Button("exit");
     Button restartP = new Button("restart");
     Button back = new Button("Go Back");
+    Button bossStage = new Button("Stage: Boss");
 
 
 
     VBox layout = new VBox(10);
-    if (mode.equals(m)){
+    if (modeQ.equals(m)){
       layout.getChildren().addAll(label, exitP, restartP, back);
+      layout.setAlignment(Pos.CENTER);
+    }
+    if (modeB.equals(m)){
+      layout.getChildren().addAll(label, exitP, restartP, bossStage);
       layout.setAlignment(Pos.CENTER);
     }
     else{
@@ -56,6 +63,11 @@ public class MenuBox{
     });
     back.setOnAction(e -> {
       window1.close();
+    });
+    bossStage.setOnAction(e -> {
+      Spaces.restart = false;
+      Platform.exit();
+      
     });
 
 

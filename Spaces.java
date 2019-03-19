@@ -75,7 +75,7 @@ public class Spaces extends Application{
 			restart = false;
 			Process P = Runtime.getRuntime().exec("java Spaces");
 		}
-
+		Process P = Runtime.getRuntime().exec("java BossFight");
 
 		//Process P = Runtime.getRuntime().exec("java Spaces");
 	}
@@ -126,7 +126,7 @@ public class Spaces extends Application{
 		if (e_dead) {
 			stop();
 			//quit = 1;
-			MenuBox.display("Menu", "You Won!", "win");
+			MenuBox.display("Menu", "You Won!", "B");
 
 		}
 
@@ -198,6 +198,9 @@ public class Spaces extends Application{
     bulletTimer.start();
 
 	}
-  
+	public void enterBoss() throws IOException{
+		Process P = Runtime.getRuntime().exec("java BossFight");
+	}
+
 
 }
