@@ -58,6 +58,7 @@ public class Bullet extends Rectangle{
 			// if the type of bullet is from an Avatar
 			if (this.getType().equals("avatarBullet")){
 				// if the bullet does not intersect with an enemy, move the bullet up
+				// https://www.youtube.com/watch?v=FVo1fm52hz0&feature=youtu.be
 				if (!this.getBoundsInParent().intersects(enemyList.get(i).getBoundsInParent()) 
 						&& this.getTranslateY() > -20) {
 					this.moveUp();
@@ -103,4 +104,28 @@ public class Bullet extends Rectangle{
 			}
 		return avatar_hit;
 		}
+	
+	public boolean bossShooter (Avatar avatar, Boss boss, Pane layout, Heart heart, ArrayList<Character>numli, Image image3) {
+		boolean ret = false;
+		if (this.getType().equals("avatarBullet")){
+			if (!this.getBoundsInParent().intersects(boss.getBoundsInParent()) && this.getTranslateY() > -20) {
+				this.moveUp();
+			}
+			else if (this.getBoundsInParent().intersects(boss.getBoundsInParent()) ) {
+				if (boss.getBLife()>0){
+					layout.getChildren().remove(this);
+					layout.getChildren().remove(boss.t);
+					boss.loseBLife();
+					boss.removeHp();
+					boss.setHp();
+					layout.getChildren().add(boss.t);
+					System.out.println(boss.shp());
+
+					ret = true;
+				}
+			}
+		}
+		return ret;
 	}
+
+}

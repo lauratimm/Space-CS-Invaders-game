@@ -55,4 +55,4 @@ public class Enemy extends Character{
 			}
 		return shoot;
 		}
-	}
+}

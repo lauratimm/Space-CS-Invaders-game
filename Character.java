@@ -32,4 +32,4 @@ public class Character extends ImageView {
 		setX(-100);
 		setY(-100);
 		}
-	}
+}

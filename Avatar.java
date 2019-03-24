@@ -90,4 +90,4 @@ public class Avatar extends Character{
 			return shoot;
 			}
    		}
-	}
+}

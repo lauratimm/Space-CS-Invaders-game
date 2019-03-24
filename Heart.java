@@ -23,10 +23,6 @@ public class Heart {
 	public void removeHeart(ArrayList<Character> list, Avatar avatar, Image image){
 		list.removeAll(list);
 		int f = 10;
-		for (int i = 0; i < avatar.getLife(); i++){
-			Character insertHeart = new Character(f, 10, 20, 20, "heart", image);
-			list.add(insertHeart);
-			f+=30;
-			}
+		numHeart(list, avatar, image);
 		}
-	}
+}
