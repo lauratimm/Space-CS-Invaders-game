@@ -9,12 +9,21 @@ public class Enemy extends Character{
 	private ArrayList<Enemy> enemyList = new ArrayList<Enemy>(); // An Array List of enemies
 
 	static final double doesEnemyShoot = 0.01;
+	static final int windowHeight = 800;
+	static final int windowWidth = 500;
 
 	// The only constructor, which creates an Enemy based on the constructor
 	// in Character
 	public Enemy(int xCoord, int yCoord, int width, int height, String type, Image image) {
 		super(xCoord, yCoord, width, height, type, image);
 		}
+
+	public Enemy(int width, int height, String type, Image image) {
+		super(width, height, type, image);
+		setX(Math.random() * windowWidth);
+		setY(Math.random() * windowHeight / 2);
+
+	}
 
 	// Getter method for the enemy list
 	public ArrayList<Enemy> getEnemyList(){

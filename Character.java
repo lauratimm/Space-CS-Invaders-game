@@ -29,6 +29,14 @@ public class Character extends ImageView {
 		dead = false;
 		}
 
+		public Character(int width, int height, String type, Image image) {
+			super(image);
+			setFitWidth(width);
+			setFitHeight(height);
+			this.type = type;
+			dead = false;
+		}
+
 	// Method which 'deletes' the object from the main stage by moving the object
 	// outside the viewable stage
 	public void delete() {
