@@ -6,9 +6,9 @@ import javafx.scene.input.KeyCode;
 public class Avatar extends Character {
 
 	//Instance Variables
-	static private int amtToMove = 10;
-	static private int maxY = 740;
-	static private int maxX = 540;
+	static final int amtToMove = 10;
+	static final int maxY = 740;
+	static final int maxX = 540;
 	private int life = 5; // the number of hearts the Avatar has left
 	private int enemiesKilled = 0; // the number of enemies the Avatar has killed;
 
