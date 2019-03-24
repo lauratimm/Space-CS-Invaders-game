@@ -121,12 +121,6 @@ public class Spaces extends Application{
 	// method for ending game. Creates a new window in which a VBox
 	// has a button and text. Once the button is pressed the game exits
 	public void endGame() {
-		Button b1 = new Button ("Quit Game");
-		Button b2 = new Button ("Fight Boss");
-		Text won = new Text (10, 10, "You Won!");
-		Text lost = new Text ("You Lost!");
-		VBox vbox = new VBox();
-		
 		// if all enemies are dead; quit conditon '1'
 		if (quit == 1) {
 			menuBox.Win(window);

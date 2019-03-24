@@ -55,4 +55,13 @@ public class Enemy extends Character{
 			}
 		return shoot;
 		}
+	public boolean bossShoot() {
+		boolean shoot = false;
+		if (Math.random()<0.1) {
+			if (!this.dead) {
+				shoot = true;
+				}
+			}
+		return shoot;
+		}
 }

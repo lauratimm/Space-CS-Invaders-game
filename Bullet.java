@@ -106,7 +106,8 @@ public class Bullet extends Rectangle{
 		}
 	
 	public boolean bossShooter (Avatar avatar, Boss boss, Pane layout, Heart heart, ArrayList<Character>numli, Image image3) {
-		boolean ret = false;
+		boolean avatar_hit = false;
+
 		if (this.getType().equals("avatarBullet")){
 			if (!this.getBoundsInParent().intersects(boss.getBoundsInParent()) && this.getTranslateY() > -20) {
 				this.moveUp();
@@ -119,13 +120,35 @@ public class Bullet extends Rectangle{
 					boss.removeHp();
 					boss.setHp();
 					layout.getChildren().add(boss.t);
-					System.out.println(boss.shp());
-
-					ret = true;
+					
+					avatar_hit = true;
+				}
+				else {
+					boss.dead = true;
+					layout.getChildren().remove(boss);
 				}
 			}
 		}
-		return ret;
+		else if (this.getType().equals("bossBullet") ){
+			// if the bullet does not intersect with the Avatar, move the bullet down
+			if (!this.getBoundsInParent().intersects(avatar.getBoundsInParent()) 
+					&& this.getTranslateY() < 800){
+				this.moveDown();
+				}
+			// if the bullet does intersect with the Avatar, remove the bullet, 
+			// and set avatar to true
+			else if (this.getBoundsInParent().intersects(avatar.getBoundsInParent())){
+				layout.getChildren().remove(this);
+				avatar_hit = true;
+				avatar.loseLife();
+				layout.getChildren().removeAll(numli);
+				heart.removeHeart(numli, avatar, image3);
+				layout.getChildren().addAll(numli);
+				}
+			}
+
+		
+		return avatar_hit;
 	}
 
 }
