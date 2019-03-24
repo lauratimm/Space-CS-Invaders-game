@@ -29,6 +29,7 @@ public class Spaces extends Application{
 	//https://ya-webdesign.com/explore/video-game-heart-png/
 	Image image3 = new Image("heart.png");
 	
+	MenuBox menuBox = new MenuBox();
 	// Creating five enemies and one avatar
 	Avatar avatar = new Avatar(300, 700, 60, 60, "avatar", image);
 	Enemy alien = new Enemy(300, 200, 40, 40, "enemy", image2);
@@ -50,6 +51,7 @@ public class Spaces extends Application{
 		// Setting primarystage to window and adding the avatar and enemies to the stage
 		window = primaryStage;
 		window.setTitle("Space Invaders");
+		layout.setStyle("-fx-background-color:black;");
 		layout.getChildren().add(avatar);
 		layout.getChildren().addAll(alien, alien2, alien3, alien4, alien5);
 		
@@ -120,59 +122,25 @@ public class Spaces extends Application{
 	// has a button and text. Once the button is pressed the game exits
 	public void endGame() {
 		Button b1 = new Button ("Quit Game");
+		Button b2 = new Button ("Fight Boss");
 		Text won = new Text (10, 10, "You Won!");
 		Text lost = new Text ("You Lost!");
 		VBox vbox = new VBox();
 		
 		// if all enemies are dead; quit conditon '1'
 		if (quit == 1) {
-			vbox.getChildren().add(won);
-			vbox.getChildren().add(b1);
-			vbox.setAlignment(Pos.CENTER);
-			Stage newstage = new Stage();
-			Scene newscene = new Scene(vbox, 100, 100, Color.BLACK);
-			newstage.setScene(newscene);
-			newscene.setFill(Color.BLACK);
-			newstage.show();
-			
-			b1.setOnAction(e -> {
-				window.close();
-				newstage.close();
-				});
-			}
+			menuBox.Win(window);
+		}
 		
 		// if avatar is dead; quit condition '2'
 		else if (quit == 2) {
-			vbox.getChildren().add(lost);
-			vbox.getChildren().add(b1);
-			vbox.setAlignment(Pos.CENTER);
-			Stage newstage = new Stage();
-			Scene newscene = new Scene(vbox, 100, 100, Color.BLACK);
-			newstage.setScene(newscene);
-			newscene.setFill(Color.BLACK);
-			newstage.show();
-			
-			b1.setOnAction(e -> {
-				window.close();
-				newstage.close();
-				});
-			}
+			menuBox.Lose(window);
+		}
 		
 		// if 'Q' is pressed; quit condition '0'
 		else {
-			vbox.getChildren().add(b1);
-			vbox.setAlignment(Pos.CENTER);
-			Stage newstage = new Stage();
-			Scene newscene = new Scene(vbox, 100, 100, Color.BLACK);
-			newstage.setScene(newscene);
-			newscene.setFill(Color.BLACK);
-			newstage.show();
-			
-			b1.setOnAction(e -> {
-				window.close();
-				newstage.close();
-				});
-			}
+			menuBox.Quit(window);
+		}
 		}
 	// This method is used to shoot, by calling shooter in bullet
 	public void shoot(Character p, Color c){
