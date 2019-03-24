@@ -8,7 +8,7 @@ public class Enemy extends Character{
 	// Instance Variables
 	private ArrayList<Enemy> enemyList = new ArrayList<Enemy>(); // An Array List of enemies
 
-	static final int doesEnemyShoot = 0.01;
+	static final double doesEnemyShoot = 0.01;
 
 	// The only constructor, which creates an Enemy based on the constructor
 	// in Character

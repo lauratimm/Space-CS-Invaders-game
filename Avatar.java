@@ -9,6 +9,8 @@ public class Avatar extends Character {
 	static final int amtToMove = 10;
 	static final int maxY = 740;
 	static final int maxX = 540;
+	static final int minY = 0;
+	static final int minX = 0;
 	private int life = 5; // the number of hearts the Avatar has left
 	private int enemiesKilled = 0; // the number of enemies the Avatar has killed;
 
@@ -40,7 +42,7 @@ public class Avatar extends Character {
 
 	//Method for moving the Avatar left
 	public void moveLeft(){
-		if (getX() > 0){
+		if (getX() > minX){
 			setX(getX() - amtToMove);
 			}
 		}
@@ -54,7 +56,7 @@ public class Avatar extends Character {
 
 	//Method for moving the Avatar Up
 	public void moveUp(){
-		if (getY() > 0){
+		if (getY() > minY){
 			setY(getY() - amtToMove);
 			}
 		}
