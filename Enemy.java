@@ -57,7 +57,7 @@ public class Enemy extends Character{
 	// Method which randomly decides whether the enemy shoots or not
 	public boolean enemyShoot() {
 		boolean shoot = false;
-		if (Math.random() < doesEnemyShoot && !this.dead) {
+		if (Math.random() < doesEnemyShoot && !this.getDead()) {
 				shoot = true;
 		}
 		return shoot;
@@ -66,7 +66,7 @@ public class Enemy extends Character{
 	// Method which randomly decides whether the boss shoots or not
 	public boolean bossShoot() {
 		boolean shoot = false;
-		if (Math.random() < doesBossShoot && !this.dead) {
+		if (Math.random() < doesBossShoot && !this.getDead()) {
 				shoot = true;
 		}
 		return shoot;

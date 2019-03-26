@@ -12,8 +12,8 @@ public class Character extends ImageView {
 	static final int delete_height = 1;
 	static final int delete_x = -100;
 	static final int delete_y = -100;
-	public boolean dead; // indicates whether the object is dead or not
-	public String type; // indicates the name of the object
+	private boolean dead; // indicates whether the object is dead or not
+	private String type; // indicates the name of the object
 
 	/* Constructor which assigns an image to the object, along with the width,
 	   height, and x and y coordinates of the object, and String type */
@@ -44,4 +44,15 @@ public class Character extends ImageView {
 		setX(delete_x);
 		setY(delete_y);
 		}
+
+	public boolean getDead(){
+		return dead;
+	}
+	public void setDead(boolean dead){
+		this.dead = dead;
+	}
+	public String getType(){
+		return type;
+	}
+
 }

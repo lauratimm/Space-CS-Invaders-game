@@ -14,8 +14,7 @@ public class Avatar extends Character {
 	private int enemiesKilled = 0;
 
 	// The only constructor, creates an Avatar based on the constructor in Character
-	public Avatar(int xCoord, int yCoord, int width, int height, String type,
-								Image image) {
+	public Avatar(int xCoord, int yCoord, int width, int height, String type, Image image) {
 		super(xCoord, yCoord, width, height, type, image);
 		}
 

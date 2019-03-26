@@ -15,6 +15,7 @@ public class Bullet extends Rectangle{
 	static final int bulletDown = 3;
 	private String type; // indicates the name of the object
 
+
 	/* The constructor creates a Bullet with width, height, and color by
 	   calling rectangle and assigns an x and y coordinate to the rectangle
 	   with a String type */
@@ -66,7 +67,8 @@ public class Bullet extends Rectangle{
 				// if the bullet does intersect with an enemy, set enemy to dead, remove the bullet and enemy
 				// from the Pane, delete enemy from the list, and add one to number of enemies avatar has killed
 				else if (this.getBoundsInParent().intersects(enemyList.get(i).getBoundsInParent()) ){
-					enemyList.get(i).dead = true;
+
+					enemyList.get(i).setDead(true);
 					layout.getChildren().remove(enemyList.get(i));
 					layout.getChildren().remove(this);
 					enemyList.get(i).delete();
@@ -124,7 +126,7 @@ public class Bullet extends Rectangle{
 					avatar_hit = true;
 				}
 				else {
-					boss.dead = true;
+					boss.setDead(true);
 					layout.getChildren().remove(boss);
 				}
 			}

@@ -33,7 +33,7 @@ public class BossFight extends Application{
 
 	public static void main(String[] args){
 		launch(args);
-		}
+	}
 	@Override
 	public void start(Stage primaryStage) throws Exception{
 		window = primaryStage;
@@ -69,13 +69,13 @@ public class BossFight extends Application{
 			}
 			else if (avatar.movement(e.getCode()) == true){
 				shoot(avatar,Color.YELLOW);
-				}
-			});
+			}
+		});
 		heart.numHeart(heartList, avatar, heartImage);
 		layout.getChildren().addAll(heartList);
 		window.setScene(scene);
 		window.show();
-		}
+	}
 
 	public void endGame() {
 		// if all enemies are dead; quit conditon '1'
@@ -93,14 +93,14 @@ public class BossFight extends Application{
 		else {
 			menuBox.Quit(window);
 		}
-		}
+	}
 	public void shoot(Character piece, Color color){
 		Bullet bullet;
 		if (piece == avatar) {
-		bullet = new Bullet((int) piece.getX() + 20, (int) piece.getY(), 5, 20, piece.type + "Bullet", color);
+			bullet = new Bullet((int) piece.getX() + 20, (int) piece.getY(), 5, 20, piece.getType() + "Bullet", color);
 		}
 		else {
-			bullet = new Bullet((int) piece.getX() + 110, (int) piece.getY() + 170, 5, 20, piece.type + "Bullet", color);
+			bullet = new Bullet((int) piece.getX() + 110, (int) piece.getY() + 170, 5, 20, piece.getType() + "Bullet", color);
 		}
 		layout.getChildren().add(bullet);
 
@@ -115,22 +115,22 @@ public class BossFight extends Application{
 				// if avatar is hit, stop the timer, which will run another timer again
 				if(avatar_hit) {
 					stop();
-					}
+				}
 
 				// if avatar life is zero, then remove the avatar, and set avatar_dead to true
 				if (avatar.getLife() == 0) {
 					avatar.delete();
 					avatar_dead = true;
-					}
+				}
 
 				// if the boss is killed, set boss_dead to true
 				if (boss.getBossLife() == 0) {
 					boss_dead = true;
-					}
 				}
-			};
-			bulletTimer.start();
 			}
+		};
+		bulletTimer.start();
+	}
 
 
 

@@ -48,7 +48,7 @@ public class Spaces extends Application {
 	// Main
 	public static void main(String[] args){
 		launch(args);
-		}
+	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -74,53 +74,53 @@ public class Spaces extends Application {
 					stop();
 					quit = intLose;
 					endGame();
-					}
+				}
 
 				// if all enemies are dead, then stop the game with quit statement '1'
 				if (enemies_dead) {
 					stop();
 					quit = intWin;
 					endGame();
-					}
+				}
 
 				// for every enemy, move randomly
 				for (int i = 0; i < 5; i++) {
 					enemyList.get(i).moveRan();
-					}
+				}
 
 				// for every enemy, if alive, shoot randomly
 				for (int i = 0; i < 5; i++) {
 					if (enemyList.get(i).enemyShoot() == true) {
 						shoot(enemyList.get(i), Color.RED);
-						}
 					}
 				}
-			};
-			eTimer.start();
-
-			// create a new scene with layout pane
-			scene = new Scene(layout, 600, 800, Color.BLACK);
-			// when a key is pressed
-			scene.setOnKeyPressed(e -> {
-
-				// if the key pressed is 'Q', quit game with quit statement '0'
-				if (e.getCode() == KeyCode.Q) {
-					quit = intQuit;
-					endGame();
-					}
-				// call avatar.movement to move avatar based on key input
-				// if movement returns true then shoot
-				else if (avatar.movement(e.getCode()) == true){
-					shoot(avatar,Color.YELLOW);
-					}
-				});
-
-			// add the hearts to the layout, then show the scene
-			heart.numHeart(heartList, avatar, heartImage);
-			layout.getChildren().addAll(heartList);
-			window.setScene(scene);
-			window.show();
 			}
+		};
+		eTimer.start();
+
+		// create a new scene with layout pane
+		scene = new Scene(layout, 600, 800, Color.BLACK);
+		// when a key is pressed
+		scene.setOnKeyPressed(e -> {
+
+			// if the key pressed is 'Q', quit game with quit statement '0'
+			if (e.getCode() == KeyCode.Q) {
+				quit = intQuit;
+				endGame();
+			}
+			// call avatar.movement to move avatar based on key input
+			// if movement returns true then shoot
+			else if (avatar.movement(e.getCode()) == true){
+				shoot(avatar,Color.YELLOW);
+			}
+		});
+
+		// add the hearts to the layout, then show the scene
+		heart.numHeart(heartList, avatar, heartImage);
+		layout.getChildren().addAll(heartList);
+		window.setScene(scene);
+		window.show();
+	}
 
 	// method for ending game. Creates a new window in which a VBox
 	// has a button and text. Once the button is pressed the game exits
@@ -139,11 +139,11 @@ public class Spaces extends Application {
 		else {
 			menuBox.Quit(window);
 		}
-		}
+	}
 	// This method is used to shoot, by calling shooter in bullet
 	public void shoot(Character piece, Color color){
 
-		Bullet bullet = new Bullet((int) piece.getX() + 20, (int) piece.getY(), 5, 20, piece.type + "Bullet", color);
+		Bullet bullet = new Bullet((int) piece.getX() + 20, (int) piece.getY(), 5, 20, piece.getType() + "Bullet", color);
 		layout.getChildren().add(bullet);
 
 		// Creates a new timer in which the bullets are shot
@@ -157,20 +157,20 @@ public class Spaces extends Application {
 				// if avatar is hit, stop the timer, which will run another timer again
 				if(avatar_hit) {
 					stop();
-					}
+				}
 
 				// if avatar life is zero, then remove the avatar, and set avatar_dead to true
 				if (avatar.getLife() == 0) {
 					avatar.delete();
 					avatar_dead = true;
-					}
+				}
 
 				// if all enemies are killed, set e_dead to true
 				if (avatar.getEnemiesKilled() == 5) {
 					enemies_dead = true;
-					}
 				}
-			};
-			bulletTimer.start();
 			}
+		};
+		bulletTimer.start();
+	}
 }
