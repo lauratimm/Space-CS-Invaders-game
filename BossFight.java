@@ -10,23 +10,27 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class BossFight extends Application{
+	static final int intQuit = 0;
+	static final int intWin = 1;
+	static final int intLose = 2;
+
 	Stage window;
 	Scene scene;
 	boolean avatar_dead = false;
 	boolean boss_dead = false;
-	double t = 0; 
+	double t = 0;
 	int quit = 0;
 
 	Pane layout = new Pane();
-	Image image = new Image("avatar.png");
-	Image image2 = new Image("heart.png");
+	Image avatarImage = new Image("avatar.png");
+	Image heartImage = new Image("heart.png");
 	Heart heart = new Heart();
-	Avatar avatar = new Avatar(300, 500, 60, 60, "avatar", image);
+	Avatar avatar = new Avatar(300, 500, 60, 60, "avatar", avatarImage);
 	MenuBox menuBox = new MenuBox();
-	Image image3 = new Image("boss.png");
-	ArrayList<Character> num_h = new ArrayList<Character>(5);
-	Boss boss = new Boss(150, 70, 300, 200, "boss", image3);
-	
+	Image bossImage = new Image("boss.png");
+	ArrayList<Character> heartList = new ArrayList<Character>(5);
+	Boss boss = new Boss(150, 70, 300, 200, "boss", bossImage);
+
 	public static void main(String[] args){
 		launch(args);
 		}
@@ -42,12 +46,12 @@ public class BossFight extends Application{
 			public void handle(long now) {
 				if (avatar_dead) {
 					stop();
-					quit = 2;
+					quit = intLose;
 					endGame();
 				}
 				if (boss_dead) {
 					stop();
-					quit = 1;
+					quit = intWin;
 					endGame();
 				}
 				boss.moveRan();
@@ -60,43 +64,43 @@ public class BossFight extends Application{
 		scene = new Scene(layout, 600, 800, Color.BLACK);
 		scene.setOnKeyPressed(e -> {
 			if (e.getCode() == KeyCode.Q) {
-				quit = 0;
+				quit = intQuit;
 				endGame();
 			}
 			else if (avatar.movement(e.getCode()) == true){
 				shoot(avatar,Color.YELLOW);
 				}
 			});
-		heart.numHeart(num_h, avatar, image2);
-		layout.getChildren().addAll(num_h);
+		heart.numHeart(heartList, avatar, heartImage);
+		layout.getChildren().addAll(heartList);
 		window.setScene(scene);
 		window.show();
 		}
-	
+
 	public void endGame() {
 		// if all enemies are dead; quit conditon '1'
-		if (quit == 1) {
+		if (quit == intWin) {
 			menuBox.WinBoss(window);
 		}
-		
-		
+
+
 		// if avatar is dead; quit condition '2'
-		else if (quit == 2) {
+		else if (quit == intLose) {
 			menuBox.Lose(window);
 		}
-		
+
 		// if 'Q' is pressed; quit condition '0'
 		else {
 			menuBox.Quit(window);
 		}
 		}
-	public void shoot(Character p, Color c){
+	public void shoot(Character piece, Color color){
 		Bullet bullet;
-		if (p == avatar) {
-		bullet = new Bullet((int) p.getX() + 20, (int) p.getY(), 5, 20, p.type+"Bullet", c);
+		if (piece == avatar) {
+		bullet = new Bullet((int) piece.getX() + 20, (int) piece.getY(), 5, 20, piece.type + "Bullet", color);
 		}
 		else {
-			bullet = new Bullet((int) p.getX() + 110, (int) p.getY() + 170, 5, 20, p.type+"Bullet", c);			
+			bullet = new Bullet((int) piece.getX() + 110, (int) piece.getY() + 170, 5, 20, piece.type + "Bullet", color);
 		}
 		layout.getChildren().add(bullet);
 
@@ -105,22 +109,22 @@ public class BossFight extends Application{
 			@Override
 			public void handle(long now){
 				// runs the shooter class for the specific bullet, and removes enemies/avatar if hit
-				// uses the boolean shooter returns to determine if avatar was hit 
-				boolean avatar_hit = bullet.bossShooter(avatar, boss, layout, heart, num_h, image2);
-				
+				// uses the boolean shooter returns to determine if avatar was hit
+				boolean avatar_hit = bullet.bossShooter(avatar, boss, layout, heart, heartList, heartImage);
+
 				// if avatar is hit, stop the timer, which will run another timer again
 				if(avatar_hit) {
 					stop();
 					}
-				
+
 				// if avatar life is zero, then remove the avatar, and set avatar_dead to true
 				if (avatar.getLife() == 0) {
 					avatar.delete();
 					avatar_dead = true;
 					}
-				
-				// if all enemies are killed, set e_dead to true
-				if (boss.getBLife() == 0) {
+
+				// if the boss is killed, set boss_dead to true
+				if (boss.getBossLife() == 0) {
 					boss_dead = true;
 					}
 				}
@@ -128,7 +132,7 @@ public class BossFight extends Application{
 			bulletTimer.start();
 			}
 
-		
-		
-	
+
+
+
 }

@@ -1,26 +1,35 @@
 import java.util.ArrayList;
 import javafx.scene.image.Image;
 
-//This class creates and Enemy by extending Character. There are methods
-//which move the Enemy randomly, and makes them shoot.
+/*This class creates and Enemy by extending Character. There are methods
+  which move the Enemy randomly, and makes them shoot. */
 public class Enemy extends Character{
-	
-	// Instance Variables 
+
+	// Instance Variables
+	static final double doesEnemyShoot = 0.01;
+	static final double doesBossShoot = 0.1;
+	static final int boundary_y = 400;
+	static final int boundary_x = 500;
 	private ArrayList<Enemy> enemyList = new ArrayList<Enemy>(); // An Array List of enemies
-	
-	// The only constructor, which creates an Enemy based on the constructor
-	// in Character
-	public Enemy(int x, int y, int w, int h, String t, Image image) {
-		super(x, y, w, h, t, image);
+
+	// This constructor is for the boss which extends off enemy
+	public Enemy(int xCoord, int yCoord, int width, int height, String type, Image image) {
+		super(xCoord, yCoord, width, height, type, image);
 		}
-	
-	// Getter method for the enemy list
+
+	// This constructor allows the enemies to move randomly
+	public Enemy(int width, int height, String type, Image image) {
+		super(width, height, type, image);
+		setX(Math.random() * boundary_x);
+		setY(Math.random() * boundary_y);
+	}
+
 	public ArrayList<Enemy> getEnemyList(){
 		return enemyList;
 	}
-	
+
 	// Method which moves the Enemy randomly
-	public void moveRan(){	
+	public void moveRan(){
 		double r = Math.random();
 		if (r < 0.25 && getX() > 0){
 			setX(getX() - 3);
@@ -35,33 +44,31 @@ public class Enemy extends Character{
 			setY(getY() + 3);
 			}
 		}
-	
+
 	// Adds the specified enemies into a list
-	public void setEnemyList(Enemy e1, Enemy e2, Enemy e3, Enemy e4, Enemy e5){
-			enemyList.add(e1);
-			enemyList.add(e2);
-			enemyList.add(e3);
-			enemyList.add(e4);
-			enemyList.add(e5);
-			}
-	
+	public void setEnemyList(Enemy enemy1, Enemy enemy2, Enemy enemy3, Enemy enemy4, Enemy enemy5){
+		enemyList.add(enemy1);
+		enemyList.add(enemy2);
+		enemyList.add(enemy3);
+		enemyList.add(enemy4);
+		enemyList.add(enemy5);
+	}
+
 	// Method which randomly decides whether the enemy shoots or not
 	public boolean enemyShoot() {
 		boolean shoot = false;
-		if (Math.random()<0.01) {
-			if (!this.dead) {
+		if (Math.random() < doesEnemyShoot && !this.dead) {
 				shoot = true;
-				}
-			}
-		return shoot;
 		}
+		return shoot;
+	}
+	
+	// Method which randomly decides whether the boss shoots or not
 	public boolean bossShoot() {
 		boolean shoot = false;
-		if (Math.random()<0.1) {
-			if (!this.dead) {
+		if (Math.random() < doesBossShoot && !this.dead) {
 				shoot = true;
-				}
-			}
-		return shoot;
 		}
+		return shoot;
+	}
 }

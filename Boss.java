@@ -5,41 +5,41 @@ import javafx.scene.layout.*;
 
 import javafx.scene.image.Image;
 
-public class Boss extends Enemy{
-  private int bLife = 123;
+public class Boss extends Enemy {
+  private int bossLife = 123;
 
   ArrayList<String> bossHp = new ArrayList<String>();
   Text t;
-  public Boss (int x, int y, int w, int h, String t, Image image){
-    super(x, y, w, h, t, image);
+  public Boss (int xCoord, int yCoord, int width, int height, String type, Image image){
+    super(xCoord, yCoord, width, height, type, image);
   }
 
-
-
-  public void numHp(){
-
-    for (int i = 0; i<bLife; i++){
+  public void numHp() {
+    for (int i = 0; i < bossLife; i++) {
       bossHp.add("|");
     }
   }
 
-  public void removeHp(){
+  public void removeHp() {
     bossHp.removeAll(bossHp);
 
-    for (int i = 0; i<bLife; i++){
+    for (int i = 0; i < bossLife; i++) {
       bossHp.add("|");
     }
-
   }
-  public int getBLife() {
-		return bLife;
+
+  public int getBossLife() {
+		return bossLife;
 	}
-	public void loseBLife() {
-		bLife -= 1;
+
+	public void loseBossLife() {
+		bossLife --;
 	}
+
   public String shp(){
     return String.join("",bossHp);
   }
+
   public void setHp(){
     Text h = new Text(10,55,String.join("",bossHp));
 
@@ -48,11 +48,9 @@ public class Boss extends Enemy{
 
     this.t = h;
   }
+
   public Text getHp(){
 
     return t;
   }
-
-
-
 }
