@@ -1,53 +1,60 @@
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.scene.layout.*;
-import javafx.scene.control.*;
-import javafx.geometry.*;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import java.lang.Math.*;
+
+/* This class is a parent class for Avatar and Enemy, which creates a
+   Character object. The class extends ImageView. When a character is created,
+   an image is assigned to the object, along with the width, height, and x and y
+   coordinates of the object, and a String */
 
 public class Character extends ImageView {
-	
-	boolean dead;
-	String type;
-	
-//	double x = 0;
-//	double y = 0;
-	 
-//	double velX = 0;
-//	double velY = 0;
 
-	public Character(int x, int y, int w, int h, String t, Image image){
+	static final int delete_width = 1;
+	static final int delete_height = 1;
+	static final int delete_x = -100;
+	static final int delete_y = -100;
+	private boolean dead; // indicates whether the object is dead or not
+	private String type; // indicates the name of the object
+
+	/* Constructor which assigns an image to the object, along with the width,
+	   height, and x and y coordinates of the object, and String type */
+ public Character(int xCoord, int yCoord, int width, int height, String type, Image image){
+	 super(image);
+	 setFitWidth(width);
+	 setFitHeight(height);
+	 setX(xCoord);
+	 setY(yCoord);
+	 this.type = type;
+	 this.dead = false;
+	}
+
+	// Constructor for the enemies that doesn't set the x and y coordinates 
+	public Character(int width, int height, String type, Image image) {
 		super(image);
-		setFitWidth(w);
-		setFitHeight(h);
-		setX(x);
-		setY(y);
-		type = t;
+		setFitWidth(width);
+		setFitHeight(height);
+		this.type = type;
 		dead = false;
 	}
-	
-/*	
-	public void tickX(double d) {
-		d += velX;	
+
+	/* Method which 'deletes' the object from the main stage by moving the object
+	   outside the viewable stage */
+	public void delete() {
+		setFitWidth(delete_width);
+		setFitHeight(delete_height);
+		setX(delete_x);
+		setY(delete_y);
+		}
+	public void setDead(boolean dead) {
+		this.dead = dead;
+	}
+	public boolean getDead() {
+		return dead;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getType() {
+		return type;
 	}
 	
-	public void tickY(double y) {
-		y += velY;
-	}
-	
-	public void setVelX(Double velX) {
-		this.velX = velX;
-	}
-	public void setVelY(Double velY) {
-		this.velY = velY;
-	}
-	
-*/	
 }
