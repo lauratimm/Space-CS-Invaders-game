@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -14,8 +16,20 @@ public class Spaces_GUI extends Application {
 	static Pane pane = new Pane();
 	Avatar_GUI avatar = new Avatar_GUI(avatar_image, 60, 60, 265, 700);
 	static Image enemy_image = new Image("enemy.png");
+	static Image heart_image = new Image("heart.png");
 	Enemy_GUI enemy = new Enemy_GUI(enemy_image, 60, 60, 400, 500);
-	
+	Enemy_GUI enemy2 = new Enemy_GUI(enemy_image, 60, 60, 400, 500);
+	Enemy_GUI enemy3 = new Enemy_GUI(enemy_image, 60, 60, 400, 500);
+	Enemy_GUI enemy4 = new Enemy_GUI(enemy_image, 60, 60, 400, 500);
+	Enemy_GUI enemy5 = new Enemy_GUI(enemy_image, 60, 60, 400, 500);
+	ArrayList<Enemy_GUI> enemy_list = new ArrayList<Enemy_GUI>(5);
+	Heart_GUI heart = new Heart_GUI(heart_image, 20, 20, 10, 10);
+	Heart_GUI heart2 = new Heart_GUI(heart_image, 20, 20, 40, 10);
+	Heart_GUI heart3 = new Heart_GUI(heart_image, 20, 20, 70, 10);
+	Heart_GUI heart4 = new Heart_GUI(heart_image, 20, 20, 100, 10);
+	Heart_GUI heart5 = new Heart_GUI(heart_image, 20, 20, 130, 10);
+	ArrayList<Heart_GUI> heart_list = new ArrayList<Heart_GUI>(5);
+
 	
 	public static void main (String[] args) {
 		launch(args);
@@ -27,7 +41,28 @@ public class Spaces_GUI extends Application {
 		stage.setTitle("Space Invaders");
 		pane.setStyle("-fx-background-color:black;");
 		pane.getChildren().add(avatar.getIV());
-		pane.getChildren().add(enemy.getIV());
+		pane.getChildren().addAll(enemy.getIV(), enemy2.getIV(), enemy3.getIV(), enemy4.getIV(), enemy5.getIV());
+		AnimationTimer eTimer = new AnimationTimer() {
+			@Override 
+			public void handle(long now) {
+				enemy_list.add(enemy);
+				enemy_list.add(enemy2);
+				enemy_list.add(enemy3);
+				enemy_list.add(enemy4);
+				enemy_list.add(enemy5);
+				for (int i = 0; i < 5; i++) {
+					enemy_list.get(i).moveRan();
+				}
+			}
+		};
+		
+		eTimer.start();
+		heart_list.add(heart);
+		heart_list.add(heart2);
+		heart_list.add(heart3);
+		heart_list.add(heart4);
+		heart_list.add(heart5);
+		pane.getChildren().addAll(heart.getIV(), heart2.getIV(), heart3.getIV(), heart4.getIV(), heart5.getIV());
 		scene = new Scene(pane, 600, 800, Color.BLACK);
 		scene.setOnKeyPressed(e -> {
 			avatar.movement(e.getCode());

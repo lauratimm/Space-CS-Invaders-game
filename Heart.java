@@ -1,13 +1,20 @@
 import javafx.scene.input.KeyCode;
 
-public class Enemy {
+public class Heart {
+	private int life = 5;
 	private int x_coordinate = 0;
 	private int y_coordinate = 0;
-	private int movement = 7;
+	private int movement = 10;
 	
-	public Enemy (int x, int y) {
-		setX_coordinate( (int) (Math.random() * x));
-		setY_coordinate((int) (Math.random() * y));
+	public Heart (int x, int y) {
+		setX_coordinate(x);
+		setY_coordinate(y);
+	}
+	public int getLife() {
+		return life;
+	}
+	public void setLife(int life) {
+		this.life = life;
 	}
 	public int getX_coordinate() {
 		return x_coordinate;
@@ -64,21 +71,4 @@ public class Enemy {
 			break;
 		}
 	}
-	public void moveRan() {
-		double r = Math.random();
-		if (r < 0.10 && getX_coordinate() > 0){
-			setX_coordinate(getX_coordinate() - getMovement());
-			}
-		else if (r < 0.20 && getX_coordinate() < 600){
-			setX_coordinate(getX_coordinate() + getMovement());
-			}
-		else if (r < 0.30 && getY_coordinate() > 0){
-			setY_coordinate(getY_coordinate() - getMovement());
-			}
-		else if (r < 0.40 && getY_coordinate() < 500){
-			setY_coordinate(getY_coordinate() + getMovement());
-			}
-		}
-		
-	
 }

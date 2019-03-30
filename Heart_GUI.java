@@ -1,15 +1,14 @@
-import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 
-public class Enemy_GUI extends Enemy {
+public class Heart_GUI extends Heart {
 	private Image image;
 	ImageView iv = new ImageView();
 	private int width;
 	private int height;
 	
-	public Enemy_GUI(Image image, int w, int h, int x, int y) {
+	public Heart_GUI(Image image, int w, int h, int x, int y) {
 		super (x,y);
 		setImage(image);
 		iv.setImage(getImage());
@@ -50,11 +49,6 @@ public class Enemy_GUI extends Enemy {
 	
 	public void movement(KeyCode code) {
 		super.movement(code);
-		iv.setX(getX_coordinate());
-		iv.setY(getY_coordinate());
-	}
-	public void moveRan() {
-		super.moveRan();
 		iv.setX(getX_coordinate());
 		iv.setY(getY_coordinate());
 	}
