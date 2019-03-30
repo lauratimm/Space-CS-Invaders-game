@@ -17,6 +17,7 @@ public class Spaces extends Application {
     Scene scene;
     Pane layout = new Pane();
 
+
     // Main
     public static void main(String[] args){
         launch(args);
@@ -32,7 +33,7 @@ public class Spaces extends Application {
         // create a new scene with layout pane
         scene = new Scene(layout, 600, 800, Color.BLACK);
         // when a key is pressed
-
+        layout.getChildren().addAll();//add enemies
         window.setScene(scene);
         window.show();
     }

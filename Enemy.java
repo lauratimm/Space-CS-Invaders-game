@@ -4,17 +4,16 @@ public class Enemy {
     private ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
     private String type = "enemy";
 
-    // Getter method for the enemy list
-    public ArrayList<Enemy> getEnemyList(){
-        return enemyList;
+    public void setEnemyList(Enemy enemy1, Enemy enemy2, Enemy enemy3, Enemy enemy4, Enemy enemy5){
+        enemyList.add(enemy1);
+        enemyList.add(enemy2);
+        enemyList.add(enemy3);
+        enemyList.add(enemy4);
+        enemyList.add(enemy5);
     }
-
-    public void setEnemyList(Enemy e1, Enemy e2, Enemy e3, Enemy e4, Enemy e5){
-        enemyList.add(e1);
-        enemyList.add(e2);
-        enemyList.add(e3);
-        enemyList.add(e4);
-        enemyList.add(e5);
+    // Getter method for the enemy list
+    public ArrayList getEnemyList(){
+        return enemyList;
     }
     // when intersect happens in GUI return type and remove an enemy from the list.
     // in the logic based one you dont have to put the enemies on the grid
