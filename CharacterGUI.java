@@ -3,6 +3,7 @@ import javafx.scene.image.ImageView;
 
 public class CharacterGUI extends ImageView {
     private String type;
+    private Image image;
 
     // Importing images
     //https://opengameart.org/content/spaceship-set-4-pixel-art-space-ships
@@ -12,12 +13,8 @@ public class CharacterGUI extends ImageView {
     //https://ya-webdesign.com/explore/video-game-heart-png/
     Image heartImage = new Image("heart.png");
 
+
     public CharacterGUI(int width, int height, String type) {
-        setFitWidth(width);
-        setFitHeight(height);
-        this.type = type;
-    }
-    public CharacterGUI(int width, int height, String type, Image image) {
         setFitWidth(width);
         setFitHeight(height);
         this.type = type;
@@ -30,10 +27,13 @@ public class CharacterGUI extends ImageView {
         else if(type.equals("heart")){
             image = heartImage;
         }
-
     }
 
     CharacterGUI(String atype){
         this.type = type;
     }
+    public Image getTypeImage(){
+        return image;
+    }
+
 }
