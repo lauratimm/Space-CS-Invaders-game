@@ -1,3 +1,4 @@
+import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -18,22 +19,32 @@ public class CharacterGUI extends ImageView {
         setFitWidth(width);
         setFitHeight(height);
         this.type = type;
-        if (type.equals("enemy")){
-            image = enemyImage;
         }
-        else if(type.equals("avatar")){
-            image = avatarImage;
-        }
-        else if(type.equals("heart")){
-            image = heartImage;
-        }
-    }
 
-    CharacterGUI(String atype){
+    public CharacterGUI(int width, int height, String type, Image image) {
+        this(width, height, type);
+        setTypeImage(type);
+    }
+    public CharacterGUI(int xCoord, int yCoord, int width, int height, String type){
+        this(width,height,type);
+        setX(xCoord);
+        setY(yCoord);
         this.type = type;
     }
-    public Image getTypeImage(){
-        return image;
+
+    public CharacterGUI(String atype){
+        this.type = type;
     }
+
+    public void setTypeImage(String type){
+            if (type.equals("enemy")) {
+                image = enemyImage;
+            } else if (type.equals("avatar")) {
+                image = avatarImage;
+            } else if (type.equals("heart")) {
+                image = heartImage;
+            }
+        }
+
 
 }

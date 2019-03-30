@@ -1,18 +1,23 @@
 import javafx.scene.image.Image;
+import java.lang.Math;
 import java.util.ArrayList;
 
 public class EnemyGUI extends CharacterGUI{
     private ArrayList<Enemy> enemyGUIList = new ArrayList<Enemy>();
-    Enemy enemyClass = new Enemy();
     static final int boundary_y = 400;
     static final int boundary_x = 500;
 
     public EnemyGUI(int width, int height, String type){
-        super(width, height, type);
+        super(width, height,type);
         setX(Math.random() * boundary_x);
         setY(Math.random() * boundary_y);
-
     }
+    public EnemyGUI(int width, int height, String type, Image image){
+        super(width, height,type, image);
+        setX(Math.random() * boundary_x);
+        setY(Math.random() * boundary_y);
+    }
+
     public void EnemyGUIList() {
         /*ArrayList<Enemy> enemyList = enemyClass.getEnemyList();
         for(Enemy items : enemyList){

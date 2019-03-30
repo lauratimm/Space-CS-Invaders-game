@@ -1,4 +1,4 @@
-public class Avatar {
+public class Avatar{
     private int life = 5; // the number of hearts the Avatar has left
 
     // Getter method for the life
