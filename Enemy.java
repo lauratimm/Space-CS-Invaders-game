@@ -1,67 +1,67 @@
-import java.util.ArrayList;
-import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 
-//This class creates and Enemy by extending Character. There are methods
-//which move the Enemy randomly, and makes them shoot.
-public class Enemy extends Character{
+public class Enemy {
+	private int x_coordinate = 0;
+	private int y_coordinate = 0;
+	private int movement = 10;
 	
-	// Instance Variables 
-	private ArrayList<Enemy> enemyList = new ArrayList<Enemy>(); // An Array List of enemies
-	
-	// The only constructor, which creates an Enemy based on the constructor
-	// in Character
-	public Enemy(int x, int y, int w, int h, String t, Image image) {
-		super(x, y, w, h, t, image);
-		}
-	
-	// Getter method for the enemy list
-	public ArrayList<Enemy> getEnemyList(){
-		return enemyList;
+	public Enemy (int x, int y) {
+		setX_coordinate( (int) (Math.random() * x));
+		setY_coordinate((int) (Math.random() * y));
 	}
-	
-	// Method which moves the Enemy randomly
-	public void moveRan(){	
-		double r = Math.random();
-		if (r < 0.25 && getX() > 0){
-			setX(getX() - 3);
-			}
-		else if (r < 0.5 && getX() < 600){
-			setX(getX() + 3);
-			}
-		else if (r < 0.75 && getY() > 0){
-			setY(getY() - 3);
-			}
-		else if (r < 0.99 && getY() < 500){
-			setY(getY() + 3);
-			}
+	public int getX_coordinate() {
+		return x_coordinate;
+	}
+	public void setX_coordinate(int x_coordinate) {
+		this.x_coordinate = x_coordinate;
+	}
+	public int getY_coordinate() {
+		return y_coordinate;
+	}
+	public void setY_coordinate(int y_coordinate) {
+		this.y_coordinate = y_coordinate;
+	}
+	public int getMovement() {
+		return movement;
+	}
+	public void setMovement(int movement) {
+		this.movement = movement;
+	}
+	public void moveLeft() {
+		if (getX_coordinate()> 0) {
+			setX_coordinate(getX_coordinate() - getMovement());
 		}
-	
-	// Adds the specified enemies into a list
-	public void setEnemyList(Enemy e1, Enemy e2, Enemy e3, Enemy e4, Enemy e5){
-			enemyList.add(e1);
-			enemyList.add(e2);
-			enemyList.add(e3);
-			enemyList.add(e4);
-			enemyList.add(e5);
-			}
-	
-	// Method which randomly decides whether the enemy shoots or not
-	public boolean enemyShoot() {
-		boolean shoot = false;
-		if (Math.random()<0.01) {
-			if (!this.dead) {
-				shoot = true;
-				}
-			}
-		return shoot;
+	}
+	public void moveRight() {
+		if (getX_coordinate()< 540) {
+			setX_coordinate(getX_coordinate() + getMovement());
 		}
-	public boolean bossShoot() {
-		boolean shoot = false;
-		if (Math.random()<0.1) {
-			if (!this.dead) {
-				shoot = true;
-				}
-			}
-		return shoot;
+	}
+	public void moveUp() {
+		if (getY_coordinate()> 0) {
+			setY_coordinate(getY_coordinate() - getMovement());
 		}
+	}
+	public void moveDown() {
+		if (getY_coordinate() < 740) {
+			setY_coordinate(getY_coordinate() + getMovement());
+		}
+	}
+
+	public void movement(KeyCode code) {
+		switch (code) {
+		case A:
+			moveLeft();
+			break;
+		case D:
+			moveRight();
+			break;
+		case W:
+			moveUp();
+			break;
+		case S:
+			moveDown();
+			break;
+		}
+	}
 }
