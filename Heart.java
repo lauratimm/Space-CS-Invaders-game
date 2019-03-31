@@ -1,28 +1,74 @@
-import java.util.ArrayList;
+import javafx.scene.input.KeyCode;
 
-import javafx.scene.image.Image;
-
-// This class creates a Heart object which uses a list of Characters
-// the Avatar, and the image of the heart, and adds Hearts of type Character
-// to the list
 public class Heart {
+	private int life = 5;
+	private int x_coordinate = 0;
+	private int y_coordinate = 0;
+	private int movement = 10;
+	
+	public Heart (int x, int y) {
+		setX_coordinate(x);
+		setY_coordinate(y);
+	}
+	public int getLife() {
+		return life;
+	}
+	public void setLife(int life) {
+		this.life = life;
+	}
+	public int getX_coordinate() {
+		return x_coordinate;
+	}
+	public void setX_coordinate(int x_coordinate) {
+		this.x_coordinate = x_coordinate;
+	}
+	public int getY_coordinate() {
+		return y_coordinate;
+	}
+	public void setY_coordinate(int y_coordinate) {
+		this.y_coordinate = y_coordinate;
+	}
+	public int getMovement() {
+		return movement;
+	}
+	public void setMovement(int movement) {
+		this.movement = movement;
+	}
+	public void moveLeft() {
+		if (getX_coordinate()> 0) {
+			setX_coordinate(getX_coordinate() - getMovement());
+		}
+	}
+	public void moveRight() {
+		if (getX_coordinate()< 540) {
+			setX_coordinate(getX_coordinate() + getMovement());
+		}
+	}
+	public void moveUp() {
+		if (getY_coordinate()> 0) {
+			setY_coordinate(getY_coordinate() - getMovement());
+		}
+	}
+	public void moveDown() {
+		if (getY_coordinate() < 740) {
+			setY_coordinate(getY_coordinate() + getMovement());
+		}
+	}
 
-	// This method uses a list, Avatar, and image. It gets the number of lives the 
-	// Avatar has and use it to add the respective number of hearts to the list
-	public void numHeart(ArrayList<Character> list, Avatar avatar, Image image){
-		int heart_x = 10; // x-coordiante of the heart
-		for (int i = 0; i < avatar.getLife(); i++){
-			Character insertHeart = new Character(heart_x, 10, 20, 20, "heart", image);
-			list.add(insertHeart);
-			heart_x+=30;
-			}
+	public void movement(KeyCode code) {
+		switch (code) {
+		case A:
+			moveLeft();
+			break;
+		case D:
+			moveRight();
+			break;
+		case W:
+			moveUp();
+			break;
+		case S:
+			moveDown();
+			break;
 		}
-	// This method uses a list, Avatar, and image. Revmoes all the hearts from the list
-	// Then It gets the number of lives the Avatar has and use it to add the respective 
-	// number of hearts to the list
-	public void removeHeart(ArrayList<Character> list, Avatar avatar, Image image){
-		list.removeAll(list);
-		int f = 10;
-		numHeart(list, avatar, image);
-		}
+	}
 }
