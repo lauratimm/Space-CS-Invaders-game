@@ -50,7 +50,7 @@ public class Avatar_GUI extends Avatar {
 	public void movement(KeyCode code) {
 		super.movement(code);
 		iv.setX(getX_coordinate());
-		iv.setY(getY_coordinate());
+		iv.setY(getY_coordinate()); 
 	}
 	
 }
