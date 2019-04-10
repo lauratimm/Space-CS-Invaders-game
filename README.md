@@ -50,6 +50,9 @@ java GUI.Spaces_GUI (this is the command to run the program)
 
 Note: the fight boss level will not run in eclipse due ROHAN EXPLAIN THIS BETTER.. 
 
+Step 3:
+Play and enjoy!! 
+
 
 The project proposal, team contract, and class diagrams are in a zip file in d2l dropbox.
 
