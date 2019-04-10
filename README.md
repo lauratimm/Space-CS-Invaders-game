@@ -12,6 +12,7 @@ The ship cannot move and shoot at the same time.
 Text Based Version:
 
 'L' is the command to shoot a bullet and enter must be pressed after every command.
+If you win the game "You won!" prints at the command line.
 
 GUI Version:
 
