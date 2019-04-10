@@ -1,17 +1,20 @@
 # group18_project
 This is the final version of our Space CS Invaders game. It is similar to Space Invaders, and the text based version is turn based while the GUI is an animation game. 
 
-Both Versions
+Both Versions:
+
 'W' moves the ship up, 'S' moves it down, 'A' moves it left and 'D' moves it right.
 There are 5 randomly generated enemies.
 Once the avatar or an enemy dies it is removed along with the bullet that collided with it.
 If the ship is hit five times, you lose the game, if you hit all the enemies before dying you win the game.
 The ship cannot move and shoot at the same time.
 
-Text Based Version
+Text Based Version:
+
 'L' is the command to shoot a bullet and enter must be pressed after every command.
 
-GUI Version
+GUI Version:
+
 The ship moves and shoots without needing to press enter and 'SPACE' is the command to shoot.
 If all the enemies are killed in the GUI version you have the option to fight the boss, which is accessed through a pop up window.
 If you lose or press 'Q', a pop-up window will show asking you to quit the game.
