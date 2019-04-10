@@ -6,7 +6,9 @@ For both versions of the game, 'W' moves the ship up, 'S' moves it down, 'A' mov
 In order to run you must have a working version of java. The files to download are in the Final branch. There are three packages: Logic, GUI and Text which must all be downloaded. To run the application, all three packages need to be downloaded and compiled. To run the GUI version, Spaces_GUI from the GUI package must be run, and to run the Text based version Spaces_Text must be run. For example, if all packages are in the same folder, it should be compiled at the command line as follows:
 
 javac Logic/*.java
+
 javac GUI/*.java
+
 javac Text/*.java
 
 The text based version is run with the command:
