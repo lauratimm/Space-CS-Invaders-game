@@ -20,6 +20,8 @@ The ship moves and shoots without needing to press enter and 'SPACE' is the comm
 If all the enemies are killed in the GUI version you have the option to fight the boss, which is accessed through a pop up window.
 If you lose or press 'Q', a pop-up window will show asking you to quit the game.
 
+Compiling and Running:
+
 In order to run you must have a working version of java. The files to download are in the Final branch. There are three packages: Logic, GUI and Text which must all be downloaded. There are a number of images in the GUI package and the application will not run without them. The GUI version also uses a text file to save high scores which is saved in the GUI folder. To run the application, all three packages need to be downloaded and compiled. For example, if all packages are in the same folder, it should be compiled at the command line as follows:
 
 
