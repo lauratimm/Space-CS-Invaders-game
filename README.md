@@ -38,7 +38,7 @@ GUI:
 
 javac Logic/*.java
 
-javac Logic/*.java
+javac GUI/*.java
 
 java GUI.Spaces_GUI
 
