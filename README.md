@@ -53,7 +53,7 @@ Note: the fight boss level will not run in eclipse due ROHAN EXPLAIN THIS BETTER
 Step 3:
 Play and enjoy!! 
 
-
+!!!!! ALJUNE EXPLAINE THE J UNTS 
 The project proposal, team contract, and class diagrams are in a zip file in d2l dropbox.
 
 References: Our game is based on Space Invaders developed by Taito. 
