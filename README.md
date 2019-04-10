@@ -1,13 +1,25 @@
 # group18_project
-This is our Space CS Invaders game, in order to run you must have a working version of java. You must download all 5 files: Avatar.java, Enemy.java, Spaces.java, Bullet.java, and Heart.java as well as the 3 png files. and compile the Spaces.java file, then you run the Space file to play our game. For demo 2, the final versions are in the demo 2 branch.
+ This is the final version of our Space CS Invaders game. It is similar to Space Invaders, and the text based version is turn based while the GUI is an animation game. In both versions there are 5 randomly generated enemies and if all the enemies are killed in the GUI version you have the option to fight the boss. Each enemy is killed and removed if the avatar's bullet collides with the enemy. If the ship is hit five times, you lose the game, if you hit all the enemies you win the game. Once the avatar or an enemy dies it is removed along with the bullet that shot it. Once the game ends, a pop-up window will show asking you to quit the game.
 
-This our second version of the game we have a javafx based game that is similar to Space Invaders, that is an turn-based game. Our Input is WASD and “SPACE” where WASD is for the movement of the ship and “SPACE” is pressed to shoot a bullet. Currently there are five randomly generated enemies which move and shoot randomly. The number of enemies can be changed in future implementation, as levels are created. Each enemy is killed and removed if the bullet collides with the enemy. Once the ship dies, the ship is removed. If the ship is hit five times, you lose the game, if you hit all the enemies you win the game. Once the game ends, a pop-up window will show asking you to quit the game.
+For both versions of the game, 'W' moves the ship up, 'S' moves it down, 'A' moves it left and 'D' moves it right. In the text based version enter must be pressed after every command and 'L' is the command to shoot a bullet. In the GUI version the ship moves and shoots without needing to press enter and 'SPACE' is the command to shoot. In both versions, the ship cannot move and shoot at the same time.
+
+In order to run you must have a working version of java. The files to download are in the Final branch. There are three packages: Logic, GUI and Text which must all be downloaded. To run the application, all three packages need to be downloaded and compiled. To run the GUI version, Spaces_GUI from the GUI package must be run, and to run the Text based version Spaces_Text must be run. For example, if all packages are in the same folder, it should be compiled at the command line as follows:
+
+javac Logic/*.java
+javac GUI/*.java
+javac Text/*.java
+
+The text based version is run with the command:
+java Text.Spaces_Text
+
+And the GUI version is run with the command:
+java GUI.Spaces_GUI
+
+Note that the application will not run BossFight.java if you are working in Eclipse because ??????????????????????????????
 
 The project proposal, team contract, and class diagrams are in a zip file in d2l dropbox.
 
-Controls for the ship: 'w' to go up 's' to go down 'a' to go left 'd' to go right 'SPACE' to shoot bullets 'q' to exit the game
-
-References: Our game currently is based on Space Invaders developed by Taito, but will be similar to a Bullet Hell game when we are finished
+References: Our game is based on Space Invaders developed by Taito. 
 
 JavaFX: https://www.youtube.com/watch?v=l2XhUHW8Oa4
 
