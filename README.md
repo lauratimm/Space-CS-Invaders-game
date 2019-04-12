@@ -48,7 +48,7 @@ Step 2: Open the 'Space CS Invaders' folder in command prompt or terminal
 Step 3: Run the following command (not including quotations):
 
 For Windows:
-'javac -cp .;junit-4.12.jar;hamcrest-core-1.3.jar Logic/.java'
+'javac -cp .;junit-4.12.jar;hamcrest-core-1.3.jar Logic/*.java'
 
 Fow Mac/Linux: 
 'javac -cp .:junit-4.12.jar:hamcrest-core-1.3.jar Logic/*.java'
