@@ -68,7 +68,7 @@ To test Enemy_Logic:
 'java -cp .;junit-4.12.jar;hamcrest-core-1.3.jar org.junit.runner.JUnitCore Logic.Enemy_LogicTest'
 
 To test Heart_Logic:
-'java -cp .;junit-4.12.jar;hamcrest-core-1.3.jar org.junit.runner.JUnitCore Logic.Enemy_LogicTest'
+'java -cp .;junit-4.12.jar;hamcrest-core-1.3.jar org.junit.runner.JUnitCore Logic.Heart_LogicTest'
 
 For a more detailed explanation on running the tests, look at the test document in dropbox
 
