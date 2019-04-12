@@ -13,24 +13,24 @@ From here follow the steps bellow to run the program:
 
 Step 1: Open the 'Space CS Invaders' folder in command prompt or terminal. To do this for Windows open the 'Space CS Invaders' folder in File Directory and then in the address bar type 'cmd' (this will open the command prompt)
 
-Step 2: In terminal or command prompt, type the following to compile and run each version of the game:
+Step 2: In terminal or command prompt, type the following to compile and run each version of the game (not including the quotations:
 
 For the Text Based version:
 
-javac Logic/*.java (this is the command to compile the Logic package)
+'javac Logic/*.java' (this is the command to compile the Logic package)
 
-javac Text/*.java (this is the command to compile the Text package)
+'javac Text/*.java' (this is the command to compile the Text package)
 
-java Text.Spaces_Text (this is the command to run the program)
+'java Text.Spaces_Text' (this is the command to run the program)
 
 
 For the Gui version:
 
-javac Logic/*.java (this is the command to compile the Logic package)
+'javac Logic/*.java' (this is the command to compile the Logic package)
 
-javac Gui/*.java (this is the command to compile the Gui package)
+'javac Gui/*.java' (this is the command to compile the Gui package)
 
-java Gui.Spaces_Gui (this is the command to run the program)
+'java Gui.Spaces_Gui' (this is the command to run the program)
 
 Note: The boss level of the Gui version will only open when running the game with command prompt or terminal but not by running it with an IDE like Eclipse, this is because in order to run the boss level, "Runtime.getRuntime().exec()" was used which executes a command in a seperate process (using cmd or terminal) but IDEs like Eclipse have their own way of running files which do not run the same commands.
 
@@ -45,30 +45,30 @@ Step 1: Download 'hamcrest-core-1.3.jar' and 'junit-4.12.jar' into the 'Space CS
 
 Step 2: Open the 'Space CS Invaders' folder in command prompt or terminal
 
-Step 3: Run the following command:
+Step 3: Run the following command (not including quotations):
 
 For Windows:
-javac -cp .;junit-4.12.jar;hamcrest-core-1.3.jar Logic/.java
+'javac -cp .;junit-4.12.jar;hamcrest-core-1.3.jar Logic/.java'
 
 Fow Mac/Linux: 
-javac -cp .:junit-4.12.jar:hamcrest-core-1.3.jar Logic/*.java
+'javac -cp .:junit-4.12.jar:hamcrest-core-1.3.jar Logic/*.java'
 
 Step 4: Run the following commands to test for the different logic classes (note, for Mac/Linux replace ';' with ':' when running the following commands):
 
 To test Avatar_Logic: 
-java -cp .;junit-4.12.jar;hamcrest-core-1.3.jar org.junit.runner.JUnitCore Logic.Avatar_LogicTest
+'java -cp .;junit-4.12.jar;hamcrest-core-1.3.jar org.junit.runner.JUnitCore Logic.Avatar_LogicTest'
 
 To test Bullet_Logic:
-java -cp .;junit-4.12.jar;hamcrest-core-1.3.jar org.junit.runner.JUnitCore Logic.Bullet_LogicTest
+'java -cp .;junit-4.12.jar;hamcrest-core-1.3.jar org.junit.runner.JUnitCore Logic.Bullet_LogicTest'
 
 To test Boss_Logic:
-java -cp .;junit-4.12.jar;hamcrest-core-1.3.jar org.junit.runner.JUnitCore Logic.Boss_LogicTest
+'java -cp .;junit-4.12.jar;hamcrest-core-1.3.jar org.junit.runner.JUnitCore Logic.Boss_LogicTest'
 
 To test Enemy_Logic:
-java -cp .;junit-4.12.jar;hamcrest-core-1.3.jar org.junit.runner.JUnitCore Logic.Enemy_LogicTest
+'java -cp .;junit-4.12.jar;hamcrest-core-1.3.jar org.junit.runner.JUnitCore Logic.Enemy_LogicTest'
 
 To test Heart_Logic:
-java -cp .;junit-4.12.jar;hamcrest-core-1.3.jar org.junit.runner.JUnitCore Logic.Enemy_LogicTest
+'java -cp .;junit-4.12.jar;hamcrest-core-1.3.jar org.junit.runner.JUnitCore Logic.Enemy_LogicTest'
 
 For a more detailed explanation on running the tests, look at the test document in dropbox
 
